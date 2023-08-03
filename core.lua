@@ -1,4 +1,4 @@
--- ALCHAEL CORE
+-- EASE CORE - by Alchael
 ac = {}
 ac.Actions = {
     Addle = 7560,
@@ -9,23 +9,30 @@ ac.Actions = {
     Barrage = 107,
     BattleVoice = 118,
     BlastArrow = 25784,
+    Bloodbath = 7542,
     Bloodletter = 110,
     Bulwark = 22,
     BurstShot = 97,
     CausticBite = 100,
+    ChaosThrust = 88,
     CircleOfScorn = 23,
     Cure = 120,
     Cure2 = 135,
     Diagnosis = 24284,
+    Disembowel = 87,
     DivineVeil = 3540,
+    DoomSpike = 86,
     Dosis = 24283,
+    DragonfireDive = 96,
     Egeiro = 24287,
     EmpyrealArrow = 3558,
     EnergyDrain = 16508,
     Eukresia = 24290,
     FastBlade = 9,
+    Feint = 7549,
     Fester = 181,
     FightOrFlight = 20,
+    FullThrust = 84,
     Gemshine = 25883,
     GoringBlade = 3538,
     Haima = 24305,
@@ -33,7 +40,10 @@ ac.Actions = {
     Kardia = 24285,
     IronJaws = 3560,
     IronWill = 28,
+    Jump = 92,
     Ladonsbite = 106,
+    LanceCharge = 85,
+    LifeSurge = 83,
     LucidDreaming = 7562,
     MagesBallad = 114,
     NaturesMinne = 7408,
@@ -41,6 +51,7 @@ ac.Actions = {
     Peloton = 7557,
     Phlegma = 24289,
     Physis = 24288,
+    PiercingTalon = 90,
     PitchPerfect = 7404,
     PreciousBrilliance = 25884,
     Prognosis = 24286,
@@ -67,6 +78,7 @@ ac.Actions = {
     Sidewinder = 3562,
     Sleep = 25880,
     Soteria = 24294,
+    SpineshatterDive = 95,
     SpiritsWithin = 29,
     Stone = 119,
     Stormbite = 113,
@@ -79,6 +91,9 @@ ac.Actions = {
     TotalEclipse = 7381,
     Toxicon = 24304,
     Troubadour = 7405,
+    TrueNorth = 7546,
+    TrueThrust = 75,
+    VorpalThrust = 78,
 }
 ac.combo = {}
 table.insert(ac.combo,ac.Actions.FastBlade)
@@ -86,8 +101,13 @@ table.insert(ac.combo,ac.Actions.RiotBlade)
 table.insert(ac.combo,ac.Actions.RageOfHalone)
 table.insert(ac.combo,ac.Actions.TotalEclipse)
 table.insert(ac.combo,ac.Actions.Prominence)
+table.insert(ac.combo,ac.Actions.TrueThrust)
+table.insert(ac.combo,ac.Actions.VorpalThrust)
+table.insert(ac.combo,ac.Actions.FullThrust)
+table.insert(ac.combo,ac.Actions.Disembowel)
+table.insert(ac.combo,ac.Actions.ChaosThrust)
 ac.constants = {
-    pixel2distance = 1000
+    version = "Alpha 0.7.1"
 }
 
 ac.flags = {
@@ -131,6 +151,7 @@ ac.jobs = {
     Archer = 5,
     Conjurer = 6,
     Paladin = 19,
+    Dragoon = 22,
     Bard = 23,
     WhiteMage = 24,
     Arcanist = 26,
@@ -144,6 +165,8 @@ ac.range = {
     buff = 0,
     cone = 0,
     heal = 0,
+    jump = 0,
+    jumpmin = 0,
     radiusRainOfDeath = 8,
     radiusShadowbite = 5,
     rangepadding = 2,
@@ -193,14 +216,16 @@ ac.timer = {
     sprint = { timeout = 3, }
 }
 function ac.CastAction(target,action) local a = ActionList:Get(1,action)
-    if (a and not a.isoncd and a.level <= Player.level) then
+    if a and not a.isoncd and a.level <= Player.level and a.range >= target.distance2d then
         --Player:SetTarget(target.id)
-        a:Cast(target.id)
+            Player:SetFacing(target.pos.x,target.pos.y,target.pos.z)
+            a:Cast(target.id)
         --if ac.targets.manual then Player:SetTarget(ac.targets.manual.id) else Player:ClearTarget() end
     end
 end
 function ac.Channel(target,action) local a = ActionList:Get(1,action)
-    if (a and not a.isoncd and a.level <= Player.level and not Player:IsMoving()) then
+    if a and not a.isoncd and a.level <= Player.level and not Player:IsMoving() and a.range >= target.distance2d then
+        Player:SetFacing(target.pos.x,target.pos.y,target.pos.z)
         Player:SetTarget(target.id) a:Cast(target.id)
         if ac.targets.manual then Player:SetTarget(ac.targets.manual.id) else Player:ClearTarget() end
     end
@@ -213,11 +238,7 @@ function ac.CombatBard()
     ac.range.buff = 30.0
     ac.range.cone = 12
     if(ac.flags.mode == "simple") then
-        --Outside Combat
-        if(not ac.IsInBossDungeon() and not IsMounted() and not IsFlying() and not ac.IsValidAttackTarget() and not ac.HasBuff("Peloton") and not Player.Incombat and ac.flags.movetime >= ac.timer.peloton.timeout) then -- if Peloton Castable
-            local action = ActionList:Get(1,ac.Actions.Peloton)
-            action:Cast()
-        end
+        
         --In Combat
         -- AOE
         local tr = ac.targets.rangecircle
@@ -228,7 +249,7 @@ function ac.CombatBard()
         if ts and not ts.los2 then Player:SetTarget(ts) end
         -- WEAVING
         if (ac.flags.canweave) then
-            if Player.hp.percent <= ac.settings.hpthreshold3 then ac.CastAction(Player,ac.Actions.SecondWind) end
+            
             if (ac.flags.teamdamage > ac.settings.aoeheal1 and ac.IsAOEHealGood()) then ac.CastAction(Player,ac.Actions.Troubadour) end
             if (ac.flags.teamdamage > ac.settings.aoeheal2 and ac.IsAOEHealGood()) then ac.CastAction(Player,ac.Actions.NaturesMinne) end
             if (ts and not ac.HasBuff("Barrage")) then
@@ -268,6 +289,37 @@ function ac.CombatBard()
 end
 function ac.CombatDragoon()
     ac.range.basic = 3
+    ac.range.cone = 7
+    ac.range.jump = 20
+    ac.range.jumpmin = 15
+    if ac.flags.mode == "simple" then
+        local tc = ac.targets.cone
+        if (ac.IsAOECandidate(tc)) and ac.HasBuff("Power Surge") then ac.CastAction(tc,ac.Actions.DoomSpike) end
+        local tr = ac.IsValidAttackTarget() or ac.targets.rangecircle
+        local ts = ac.IsValidAttackTarget() or ac.targets.single or ac.targets.boss
+        if ac.flags.canweave and Player.Incombat then
+            if Player.level < 26 and ac.IsCombo(ac.Actions.TrueThrust) then ac.CastAction(Player,ac.Actions.LifeSurge) end
+            if ac.IsCombo(ac.Actions.VorpalThrust) and Player.level >= 26 and ac.HasBuff("Power Surge") then ac.CastAction(Player,ac.Actions.LifeSurge) end
+            if tr then ac.CastAction(tr,ac.Actions.Jump) end
+            if ts then ac.CastAction(Player,ac.Actions.LanceCharge) end
+        end
+        if ts then
+            if not ts.los2 then
+                Player:SetTarget(ts)
+            else
+                if ac.IsCombo(ac.Actions.Disembowel) then ac.CastAction(ts,ac.Actions.ChaosThrust) end
+                if ac.IsCombo(ac.Actions.TrueThrust) and not ac.HasBuff("Power Surge") then ac.CastAction(ts,ac.Actions.Disembowel) end 
+                if ac.IsCombo(ac.Actions.VorpalThrust) then ac.CastAction(ts,ac.Actions.FullThrust) end
+                if ac.IsCombo(ac.Actions.TrueThrust) then ac.CastAction(ts,ac.Actions.VorpalThrust) end
+                if not ac.IsCombo(ac.Actions.TrueThrust) then ac.CastAction(ts,ac.Actions.TrueThrust) end
+            end
+        end
+        if tr then
+            if ac.IsAOECandidate(tr) and tr.distance2d > ac.range.jumpmin and Player.hp.current > ac.settings.hpthreshold1 then ac.CastAction(tr,ac.Actions.DragonfireDive) end
+            if tr.distance2d > ac.range.jumpmin and Player.hp.current > ac.settings.hpthreshold1 and tr.ents == 1 then ac.CastAction(tr,ac.Actions.SpineshatterDive) end
+            if not ac.HasBuff("Life Surge") and tr.distance2d > ac.range.basic+1.5 then ac.CastAction(tr,ac.Actions.PiercingTalon) end
+        end
+    end
 end
 function ac.CombatPaladin()
     ac.flags.class = "tank"
@@ -282,20 +334,20 @@ function ac.CombatPaladin()
         end
         -- Start Poking things when already in combat or have a tasty look on an innocent mob else stay put
         local tp = ac.targets.tankpoke
-        if (Player.Incombat) then
-            if (tp) then ac.CastAction(tp,ac.Actions.ShieldLob) end
+        if Player.Incombat then
+            if tp then ac.CastAction(tp,ac.Actions.ShieldLob) end
         else
             local tp = ac.IsValidAttackTarget()
-            if (tp and tp.distance2d > ac.range.basic and tp.distance2d < ac.range.long) then ac.CastAction(tp,ac.Actions.ShieldLob) end
+            if tp and tp.distance2d > ac.range.basic and tp.distance2d < ac.range.long then ac.CastAction(tp,ac.Actions.ShieldLob) end
         end
         local ts = ac.IsValidAttackTarget() or ac.targets.single
-        if (ac.flags.canweave) then
+        if ac.flags.canweave then
             -- [MITIGATION]
             if ac.flags.teamdamage >= ac.settings.aoeheal1 then ac.CastAction(Player,ac.Actions.DivineVeil) end
-            if (table.valid(Player.gauge)) then
-                if (Player.gauge[1] > ac.settings.hpthreshold1 and Player.hp.percent < ac.settings.hpthreshold0) then
+            if table.valid(Player.gauge) then
+                if Player.gauge[1] > ac.settings.hpthreshold1 and Player.hp.percent < ac.settings.hpthreshold0 then
                     ac.CastAction(Player,ac.Actions.Sheltron)
-                elseif (Player.gauge[1] > ac.settings.hpthreshold2 and Player.hp.percent < ac.settings.hpthreshold1) then
+                elseif Player.gauge[1] > ac.settings.hpthreshold2 and Player.hp.percent < ac.settings.hpthreshold1 then
                     ac.CastAction(Player,ac.Actions.Sheltron)
                 end
             end
@@ -323,22 +375,22 @@ function ac.CombatPaladin()
         table.sort(ac.targets.short, function(l,r) return (l.hp.current) < (r.hp.current) end)
         table.sort(ac.targets.short, function(l,r) return (l.aggropercentage) < (r.aggropercentage) end)
         -- [SINGLE TARGET ROTATION]
-        if(table.valid(ac.targets.short)) then
+        if table.valid(ac.targets.short) then
             local ts = ac.IsValidAttackTarget() or ac.targets.short[1]
             if ac.flags.canweave and ac.flags.bosstarget then ac.CastAction(Player,ac.Actions.FightOrFlight) end
             if ac.flags.canweave and ac.flags.bosstarget then ac.CastAction(Player,ac.Actions.CircleOfScorn) end
             if ac.flags.canweave then ac.CastAction(ts,ac.Actions.SpiritsWithin) end
             if ac.flags.canweave then ac.CastAction(ts,ac.Actions.GoringBlade) end
             a = ActionList:Get(1, ac.Actions.ShieldBash)
-            if(ts.castinginfo.castinginterruptible and ac.flags.toughness > ac.settings.bosshpmultiplier / 2) then
+            if ts.castinginfo.castinginterruptible and ac.flags.toughness > ac.settings.bosshpmultiplier / 2 then
                 ac.flags.caninterrupt = true    -- Dont remove these flags, they're used for debugging purposes
                 ac.CastAction(ts,ac.Actions.ShieldBash)
             else
                 ac.flags.caninterrupt = false
             end
-            if (ac.IsCombo(ac.Actions.RiotBlade)) then ac.CastAction(ts,ac.Actions.RageOfHalone) end
-            if (ac.IsCombo(ac.Actions.FastBlade)) then ac.CastAction(ts,ac.Actions.RiotBlade) end
-            if (not ac.IsCombo(ac.Actions.FastBlade)) then ac.CastAction(ts,ac.Actions.FastBlade) end
+            if ac.IsCombo(ac.Actions.RiotBlade) then ac.CastAction(ts,ac.Actions.RageOfHalone) end
+            if ac.IsCombo(ac.Actions.FastBlade) then ac.CastAction(ts,ac.Actions.RiotBlade) end
+            if not ac.IsCombo(ac.Actions.FastBlade) then ac.CastAction(ts,ac.Actions.FastBlade) end
         end
         if not tp and ts then ac.CastAction(ts,ac.Actions.ShieldLob) end
     end
@@ -348,7 +400,7 @@ function ac.CombatSage()
     ac.range.aoeheal = 15
     ac.range.basic = 25
     ac.range.heal = 30
-    if (ac.flags.mode == "simple") then
+    if ac.flags.mode == "simple" then
         local ts = ac.IsValidAttackTarget() or ac.targets.single
         local th = ac.IsValidHealTarget() or ac.targets.heal
         local tr = ac.IsValidReviveTarget() or ac.targets.revive
@@ -377,7 +429,7 @@ function ac.CombatSummoner()
     ac.range.basic = 25
     ac.range.heal = 30
     if ac.flags.mode == "simple" then
-        if not table.valid(Player.pet) then ac.Channel(Player,ac.Actions.SummonCarbuncle) end
+        
         local tz = ac.IsValidReviveTarget() or ac.targets.revive
         local tr = ac.IsValidAttackTarget() or ac.targets.rangecircle
         local ts = ac.IsValidAttackTarget() or ac.targets.single or ac.targets.boss
@@ -385,7 +437,7 @@ function ac.CombatSummoner()
         
         if ac.flags.canweave then
             if Player.mp.current < ac.settings.mpcritical then ac.CastAction(Player,ac.Actions.LucidDreaming) end
-            if Player.hp.percent < ac.settings.hpthreshold1 then ac.CastAction(Player,ac.Actions.RadiantAegis) end
+            if Player.hp.percent < ac.settings.hpthreshold1 or ac.flags.teamdamage > ac.settings.aoeheal1 then ac.CastAction(Player,ac.Actions.RadiantAegis) end
             if Player.Incombat then
                 if ac.gauge.SMNruby == 0 and ac.gauge.SMNtopaz == 0 and ac.gauge.SMNemerald == 0 then ac.CastAction(Player,ac.Actions.Aethercharge) end
                 if tr then if ac.HasBuff("Swiftcast") and ac.IsAOECandidate(tr) and ac.gauge.SMNactivesummon == 1 then ac.CastAction(tr,ac.Actions.PreciousBrilliance) end end
@@ -398,6 +450,7 @@ function ac.CombatSummoner()
                 end
             end
             if ts then
+                if ac.targets.boss == ts then ac.CastAction(ts,ac.Actions.Addle) end
                 if ac.gauge.SMNaetherflow == 0 then ac.CastAction(ts,ac.Actions.EnergyDrain) end
                 if ac.gauge.SMNaetherflow > 0 then ac.CastAction(ts,ac.Actions.Fester) end
             end
@@ -543,6 +596,12 @@ function ac.DrawHitbox()
         GUI:AddCircleFilled(spos.x,spos.y,2,GUI:ColorConvertFloat4ToU32(1, 1, 1, 1),8)
         
     end
+    if (ac.IsTank() or ac.IsMelee()) and ac.settings.autocombat and table.valid(MGetTarget()) and MGetTarget().distance2d > ac.range.basic then ac.DrawCircle(MGetTarget().pos,ac.range.basic,ac.Color(0,1,1,.1),16) end
+    if ac.flags.lastaction == ac.Actions.Disembowel and Player.level >= 50 then
+        GUI:SetWindowFontSize(2)
+        GUI:AddText(spos.x-100,spos.y+30,ac.Color(1,1,.1,1),"Aim for REAR!")
+        GUI:SetWindowFontSize(1)
+    end
     GUI:PopStyleVar()
     GUI:End()
 end
@@ -568,7 +627,7 @@ function ac.Draw()
             end
             if GUI:IsItemHovered() then
                 if ac.settings.autocombat then
-                    GUI:SetTooltip("version Alpha 0.7\nCurrently Supported:\nBARD - 100%%\nPALADIN - 50%%\nSAGE - 20%%\nSUMMONER - 30%%\nWHITE MAGE - 20%%\nAdd me on Discord for support\nand requests @alchael\n-P.S. Thank you so much\nfor trying me out. Take care :]")
+                    GUI:SetTooltip("version "..ac.constants.version.."\nCurrently Supported:\nBARD - 100%%\nDRAGOON - 50%%\nPALADIN - 50%%\nSAGE - 20%%\nSUMMONER - 30%%\nWHITE MAGE - 20%%\nAdd me on Discord for support\nand requests @alchael\n-P.S. Thank you so much\nfor trying me out. Take care :]")
                 else
                     GUI:SetTooltip("The EASE Series Upholds The Tenets of\nEfficiency\n        Affordability\n                Simplicity\n                        Elegance\nPrepare for Maximum Awesomeness... :]")
                 end
@@ -614,14 +673,7 @@ function ac.Draw()
                     GUI:Text("Cone2: "..tostring(c1.id).." Count: "..tostring(c1.ents))
                 end
                 --local t = ac.GetMaxEnemiesInsideRadiusRangePoint(5,10)
-                if (t2) then
-                    GUI:Text("RRadius: "..tostring(t.id))
-                    local a = ActionList:Get(1,ac.Actions.BurstShot)
-                    if (ac.GCD() and t.ents >= ac.settings.aoethreshold) then
-                        Player:SetTarget(t.id)
-                        a:Cast(t.id)
-                    end
-                end
+                
                 GUI:Text("Damaged: "..tostring(ac.flags.damagedfriends)) GUI:SameLine()
                 GUI:Text("Friends: "..tostring(#ac.friends)) GUI:SameLine()
                 GUI:Text("TD: "..tostring(ac.flags.teamdamage)) GUI:SameLine()
@@ -652,7 +704,8 @@ function ac.GCD()   -- returns true if Off GCD
     if (ac.IsWhiteMage()) then if (ActionList:Get(1,ac.Actions.Stone).isoncd) then return false else return true end end
 end
 function ac.GetDistance(ppos,tpos) return math.sqrt((tpos.x-ppos.x )^2 + (tpos.y-ppos.y)^2 + (tpos.z-ppos.z)^2) end
-function ac.GetEnemiesInsideCone(radius, heading)
+function ac.GetEnemiesInsideCone(radius, heading, wide)
+    local w = wide or true
     local el = nil
     local entities = nil
     el = MEntityList("alive,attackable,targetable,maxdistance2d="..tostring(ac.range.cone))
@@ -667,8 +720,10 @@ function ac.GetEnemiesInsideCone(radius, heading)
             local deviation = entityAngle - entityHeading
             local absDeviation = math.abs(deviation)
             local leftover = math.abs(absDeviation - math.pi)
-            if (leftover > (math.pi * .75) and leftover < (math.pi * 1.25)) then
+            if wide and (leftover > (math.pi * .75) and leftover < (math.pi * 1.25)) then
                 table.insert(entities, e) -- entity is in front
+            elseif not wide and (leftover > (math.pi * .63) and leftover < (math.pi * 1.37)) then
+                table.insert(entities, e) -- narrow cone
             end
         end
     end
@@ -715,13 +770,13 @@ function ac.GetJob()
     if ac.IsSummoner() then return "SMNer" end
     if ac.IsWhiteMage() then return "WHMage" end
 end
-function ac.GetMaxEnemiesInsideConePoint(radius)
+function ac.GetMaxEnemiesInsideConePoint(radius,wide)
     local el = MEntityList("alive,attackable,targetable,maxdistance2d="..tostring(ac.range.cone))
     local enemycone = {}
     if (el) then
         for _, e in pairs(el) do
             if (e.attackable and e.targetable and e.aggro) then
-                local numEnts = ac.GetEnemiesInsideCone(radius, ac.GetHeading(e))
+                local numEnts = ac.GetEnemiesInsideCone(radius, ac.GetHeading(e),wide)
                 table.insert(enemycone, {id=e.id, ents=numEnts})
             end
         end
@@ -758,7 +813,7 @@ function ac.GetMaxEnemiesInsideRadiusRangePoint(radius, range)
             end
         end
         if (numEnts > 0) then
-            table.insert(enemyrangecircle,{id=e.id,ents=numEnts})
+            table.insert(enemyrangecircle,{id=e.id,ents=numEnts,pos=e.pos,distance2d=e.distance2d})
         end
     end
     --d("EENTS "..tostring(#enemyrangecircle))
@@ -796,7 +851,7 @@ function ac.GetPrioritySingleRevive()
 end
 function ac.GetPrioritySingleTarget()
     local angrymobs = {}
-    if ac.IsBard() then
+    if ac.IsBard() or ac.IsDragoon() then
         angrymobs = ac.GetMobsInRange(ac.range.basic,true)
         table.sort(angrymobs, function(l,r) return (l.hp.current) < (r.hp.current) end)
         --table.sort(angrymobs, function(l,r) return () < () end)
@@ -860,13 +915,14 @@ function ac.IsAOEGood(radius) return #ac.GetEnemiesInsideRadius(radius) >= ac.se
 function ac.IsAOEHealGood() return (ac.flags.damagedfriends >= #ac.friends/2) end
 function ac.IsCombo(action) return ac.flags.lastaction == action end
 function ac.IsBard(target) local t = target or Player return (t.job == ac.jobs.Archer or t.job == ac.jobs.Bard) end
+function ac.IsDragoon(target) local t = target or Player return (t.job == ac.jobs.Lancer or t.job == ac.jobs.Dragoon) end
 function ac.IsPaladin(target) local t = target or Player return (t.job == ac.jobs.Gladiator or t.job == ac.jobs.Paladin) end
 function ac.IsSage(target) local t = target or Player return (t.job == ac.jobs.Sage) end
 function ac.IsSummoner(target) local t = target or Player return (t.job == ac.jobs.Arcanist or t.job == ac.jobs.Summoner) end
 function ac.IsWhiteMage(target) local t = target or Player return (t.job == ac.jobs.Conjurer or t.job == ac.jobs.WhiteMage) end
 function ac.IsTank(target) local t = target or Player return (ac.IsPaladin(t)) end
 function ac.IsHealer(target) local t = target or Player return (ac.IsSage(t) or ac.IsWhiteMage(t)) end
-function ac.IsMelee(target) end
+function ac.IsMelee(target) local t = target or Player return (ac.IsDragoon()) end
 function ac.IsRange(target) local t = target or Player return (ac.IsBard(t)) end
 function ac.IsOnline(target) return target.onlinestatus == 43 end
 function ac.IsDOTexpiring(target,dotnum)
@@ -911,11 +967,14 @@ function ac.Update()
     if (TimeSince(ac.timer.pulse.last) > ac.timer.pulse.frequency and Player.targetable) then ac.UpdatePulse() end
     -- TICKS
     if ac.settings.autocombat then
+        
         if ac.IsBard() then ac.CombatBard() end
+        if ac.IsDragoon() then ac.CombatDragoon() end
         if ac.IsPaladin() then ac.CombatPaladin() end
         if ac.IsSage() then ac.CombatSage() end
         if ac.IsSummoner() then ac.CombatSummoner() end
         if ac.IsWhiteMage() then ac.CombatWhiteMage() end
+        
     end
 end
 function ac.UpdateTeamHealth()
@@ -957,11 +1016,14 @@ function ac.UpdateHeartbeat()
     if (ac.flags.movetime >= 5 and ac.settings.autocombat and not sprint.isoncd and Player.Incombat == false and not IsMounted() and Player:IsMoving() and not ac.IsInBossDungeon()) then -- need proper logic here when to cast, preferrably trying to avoidAOE
         sprint:Cast()
     end
+    -- bandaid
+    if ac.settings.autocombat and ac.IsSummoner() then if not table.valid(Player.pet) then ac.Channel(Player,ac.Actions.SummonCarbuncle) end end
+
 end
 function ac.UpdatePulse()
     ac.timer.pulse.last = Now()
     --if IsControlOpen("SelectYesno") then UseControlAction("SelectYesno", "Yes") end
-    
+    if ac.settings.autocombat and IsControlOpen("GrandCompanySupplyReward") then UseControlAction("GrandCompanySupplyReward","Deliver") end
     if Player:IsMoving() and ac.flags.ismoving then ac.flags.movetime = ac.flags.movetime + (ac.timer.pulse.frequency/1000) end
     if not Player:IsMoving() and not ac.flags.ismoving then ac.flags.idletime = ac.flags.idletime + (ac.timer.pulse.frequency/1000) end
     if Player:IsMoving() and not ac.flags.ismoving then ac.flags.ismoving = not ac.flags.ismoving ac.flags.idletime = 0
@@ -972,6 +1034,10 @@ function ac.UpdatePulse()
     ac.UpdateTarget()
     ac.UpdateTeamHealth()
     ac.UpdateWeave()
+    --Roles
+    if ac.settings.autocombat and ac.IsRange() and not ac.IsInBossDungeon() and not IsMounted() and not IsFlying() and not ac.HasBuff("Peloton") and not Player.Incombat and ac.flags.movetime >= ac.timer.peloton.timeout then ac.CastAction(Player,ac.Actions.Peloton) end
+    if Player.Incombat and ac.flags.canweave and (ac.IsMelee() or ac.IsRange()) then if Player.hp.percent <= ac.settings.hpthreshold3 then ac.CastAction(Player,ac.Actions.SecondWind) end end
+    if Player.Incombat and ac.flags.canweave and ac.IsMelee() then if Player.hp.percent <= ac.settings.hpthreshold2 then ac.CastAction(Player,ac.Actions.Bloodbath) end end
 end
 function ac.UpdateSongs()
     if (ac.HasBuff("The Wanderer's Minuet")) then ac.flags.songlist = 2 end
@@ -986,15 +1052,23 @@ function ac.UpdateTarget()      -- Needs rework and abstraction.. but working fo
         ac.targets.single = ac.GetPrioritySingleTarget()
         ac.targets.boss = ac.GetBoss(ac.range.basic)
     end
+    if ac.IsDragoon() then
+        ac.targets.cone = ac.GetMaxEnemiesInsideConePoint(ac.range.cone,false)
+        ac.targets.rangecircle = ac.GetMaxEnemiesInsideRadiusRangePoint(5, ac.range.jump)
+        ac.targets.single = ac.GetPrioritySingleTarget()
+        ac.targets.boss = ac.GetBoss(ac.range.basic)
+    end
     if ac.IsPaladin() then
         ac.targets.tankpoke = ac.GetPriorityTankPoke()
         ac.targets.single = ac.GetPrioritySingleTarget()
         ac.targets.short = ac.GetEnemiesInsideRadius(ac.range.short)
+        ac.targets.boss = ac.GetBoss(ac.range.basic)
     end
     if ac.IsSage() then
         ac.targets.heal = ac.GetPrioritySingleHeal()
         ac.targets.revive = ac.GetPrioritySingleRevive()
         ac.targets.single = ac.GetPrioritySingleTarget()
+        ac.targets.boss = ac.GetBoss(ac.range.basic)
     end
     if ac.IsSummoner() then
         ac.targets.rangecircle = ac.GetMaxEnemiesInsideRadiusRangePoint(5, ac.range.basic)
@@ -1024,7 +1098,7 @@ function ac.UpdateTarget()      -- Needs rework and abstraction.. but working fo
     end
 end
 function ac.UpdateWeave() -- needs abstraction
-    if ac.IsBard() then
+    if ac.IsBard() or ac.IsDragoon() then
         local a = ActionList:Get(1, ac.Actions.BurstShot)
         if (a.cd > a.cdmax / 4 and a.cd < a.cdmax / 4 * 3) then ac.flags.canweave = true else ac.flags.canweave = false end
     end
