@@ -5,21 +5,28 @@ ac.actions = {
     Aero = 121,
     Aethercharge = 25800,
     ApexArrow = 16496,
+    ArmoftheDestroyer = 62,
     ArmysPaeon = 116,
     Barrage = 107,
     BattleLitany = 3557,
     BattleVoice = 118,
+    Berserk = 38,
     BlastArrow = 25784,
     Blizzard = 142,
     Bloodbath = 7542,
     Bloodletter = 110,
+    Bootshine = 53,
     Bulwark = 22,
     BurstShot = 97,
     CausticBite = 100,
     ChaosThrust = 88,
     CircleOfScorn = 23,
+    CleanShot = 2873,
     Cure = 120,
     Cure2 = 135,
+    Cure3 = 131,
+    Defiance = 48,
+    Demolish = 29477,
     Diagnosis = 24284,
     Disembowel = 87,
     DivineVeil = 3540,
@@ -34,28 +41,45 @@ ac.actions = {
     Feint = 7549,
     Fester = 181,
     FightOrFlight = 20,
+    FloodofDarkness = 16466,
     FullThrust = 84,
+    GaussRound = 2874,
     Gemshine = 25883,
     GoringBlade = 3538,
+    Grit = 3629,
     Haima = 24305,
     HallowedGround = 30,
-    Kardia = 24285,
+    HardSlash = 3617,
+    HeatBlast = 7410,
+    HeavySwing = 31,
+    Holmgang = 43,
+    HotShot = 2872,
+    Hypercharge = 17209,
+    InnerBeast = 49,
+    Interject = 7538,
     IronJaws = 3560,
     IronWill = 28,
     Jump = 92,
+    Kardia = 24285,
     Ladonsbite = 106,
     LanceCharge = 85,
     LifeSurge = 83,
     LucidDreaming = 7562,
     MagesBallad = 114,
+    Maim = 37,
+    Malefic = 3596,
+    Medica = 124,
+    Meditation = 3546,
     NaturesMinne = 7408,
     Outburst = 16511,
+    Overpower = 41,
     Peloton = 7557,
     Phlegma = 24289,
     Physis = 24288,
     PiercingTalon = 90,
     PitchPerfect = 7404,
     PreciousBrilliance = 25884,
+    PresenceofMind = 136,
     Prognosis = 24286,
     Prominence = 16457,
     Physick = 16230,
@@ -64,12 +88,19 @@ ac.actions = {
     RageOfHalone = 21,
     RagingStrikes = 101,
     RainOfDeath = 117,
+    Raise = 125,
     Rampart = 7531,
+    Reassemble = 2876,
     RefulgentArrow = 98,
+    Regen = 137,
     Reprisal = 7535,
     Rescue = 7571,
+    Return = 6,
     Resurrection = 173,
+    Ricochet = 2890,
     RiotBlade = 15,
+    RookAutoturret = 2864,
+    RookOverdrive = 7415,
     Ruin = 163,
     SecondWind = 7541,
     Sentinel = 17,
@@ -79,11 +110,20 @@ ac.actions = {
     ShieldLob = 24,
     Sidewinder = 3562,
     Sleep = 25880,
+    SlugShot = 2868,
+    SnapPunch = 56,
     Soteria = 24294,
+    Souleater = 3632,
     SpineshatterDive = 95,
+    SpinningEdge = 2240,
     SpiritsWithin = 29,
+    SplitShot = 2866,
+    SpreadShot = 2870,
+    SteelPeak = 3546,
     Stone = 119,
     Stormbite = 113,
+    StormsPath = 42,
+    SyphonStrike = 3623,
     SummonCarbuncle = 25798,
     SummonEmerald = 25804,
     SummonRuby = 25802,
@@ -91,13 +131,23 @@ ac.actions = {
     SummonIfrit = 25805,
     Swiftcast = 7561,
     TheWanderersMinuet = 3559,
+    ThrillofBattle = 40,
     TotalEclipse = 7381,
+    Tomahawk = 46,
     Toxicon = 24304,
     Troubadour = 7405,
     TrueNorth = 7546,
+    TrueStrike = 54,
     TrueThrust = 75,
+    TwinSnakes = 29476,
+    Unleash = 3621,
+    Unmend = 3624,
+    Vengeance = 44,
     VorpalThrust = 78,
+    Wildfire = 2878,
 }
+ac.avoid = { [902] = "rear", [903] = "rear"}
+ac.boss = {1677}
 ac.combo = {}
 table.insert(ac.combo,ac.actions.FastBlade)
 table.insert(ac.combo,ac.actions.RiotBlade)
@@ -109,20 +159,30 @@ table.insert(ac.combo,ac.actions.VorpalThrust)
 table.insert(ac.combo,ac.actions.FullThrust)
 table.insert(ac.combo,ac.actions.Disembowel)
 table.insert(ac.combo,ac.actions.ChaosThrust)
+table.insert(ac.combo,ac.actions.HeavySwing)
+table.insert(ac.combo,ac.actions.Maim)
+table.insert(ac.combo,ac.actions.StormsPath)
+table.insert(ac.combo,ac.actions.HardSlash)
+table.insert(ac.combo,ac.actions.SyphonStrike)
+table.insert(ac.combo,ac.actions.Souleater)
 ac.constants = {
-    version = "Alpha 0.7.1",
+    version = "Alpha 0.7.4",
     stuckdistance = .5,
 }
-ac.dungeon = {[32] = 25, [41] = 27,}
+
+ac.adungeon = {[15] = 19, [16] = 20, [17] = 21,}
+ac.dungeon = {[15] = 19, [16] = 20, [17] = 21, [24] = 23, [28] = 24, [32] = 25, [41] = 27, [50] = 33, [53] = 34, [55] = 35, [57] = 36,}
+ac.dgitemlevel = {[15] = 1, [16] = 1, [17] = 1, [24] = 1, [28] = 1, [32] = 1, [41] = 1, [50] = 90, [53] = 105, [55] = 110, [57] = 115,}
 ac.entities = {deadfriends = nil, enemies = nil, friends = nil,}
 ac.flags = {
     autotarget = true,
+    avoiding = false,
     bosstarget = false,
     canaoe = false,
+    canheal = true,
     caninterrupt = false,
     canpoll = false,
     canweave = false,
-    class = "none",
     damagedfriends = 0,
     enemiesinsidecone = 0,
     gcd = 0,
@@ -141,6 +201,7 @@ ac.flags = {
     outsidecombat = 0,
     pos = {},
     prevcombat = false,
+    prevjob = 0,
     prevmapid = 0,
     prevmissionindex = 0,
     prevpos = {},
@@ -148,6 +209,7 @@ ac.flags = {
     sleep = 0,
     songlist = 1,
     stuck = false,
+    stucktime = 0,
     teamdamage = 0,
     toughness = 0,
 }
@@ -164,21 +226,11 @@ ac.gauge = {
     SMNlockdown = nil,
     SMNsummontime = nil,
     SMNstacks = nil,
+    MCHheat = nil,
+    MCHbattery = nil,
+    MCHoverheated = nil,
+    DRKdarkside = nil,
 }
---[[
-ac.jobs = {
-    Gladiator = 1,
-    Lancer = 4,
-    Archer = 5,
-    Conjurer = 6,
-    Paladin = 19,
-    Dragoon = 22,
-    Bard = 23,
-    WhiteMage = 24,
-    Arcanist = 26,
-    Summoner = 27,
-    Sage = 40,
-}]]
 ac.gcd = {
     [FFXIV.JOBS.ARCHER] = ac.actions.BurstShot,
     [FFXIV.JOBS.BARD] = ac.actions.BurstShot,
@@ -190,6 +242,23 @@ ac.gcd = {
     [FFXIV.JOBS.SUMMONER] = ac.actions.Ruin,
     [FFXIV.JOBS.THAUMATURGE] = ac.actions.Blizzard,
     [FFXIV.JOBS.BLACKMAGE] = ac.actions.Blizzard,
+    [FFXIV.JOBS.MARAUDER] = ac.actions.HeavySwing,
+    [FFXIV.JOBS.WARRIOR] = ac.actions.HeavySwing,
+    [FFXIV.JOBS.PUGILIST] = ac.actions.Bootshine,
+    [FFXIV.JOBS.MONK] = ac.actions.Bootshine,
+    [FFXIV.JOBS.ROGUE] = ac.actions.SpinningEdge,
+    [FFXIV.JOBS.NINJA] = ac.actions.SpinningEdge,
+    [FFXIV.JOBS.MACHINIST] = ac.actions.SplitShot,
+    [FFXIV.JOBS.DARKKNIGHT] = ac.actions.HardSlash,
+    [FFXIV.JOBS.CONJURER] = ac.actions.Stone,
+    [FFXIV.JOBS.WHITEMAGE] = ac.actions.Stone,
+    [FFXIV.JOBS.ASTROLOGIAN] = ac.actions.Malefic,
+}
+ac.heals = {
+    ac.actions.Cure,
+    ac.actions.Cure2,
+    ac.actions.Cure3,
+    ac.actions.Medica,
 }
 ac.objectives = {}
 ac.poll = {
@@ -217,6 +286,7 @@ if (file) then
 else
     ac.settings = {
         aoethreshold = 3,
+        aoeheal0 = 65,
         aoeheal1 = 100,
         aoeheal2 = 200,
         aoeheal3 = 325,
@@ -224,6 +294,7 @@ else
         autocombat = true,
         autolevel = true,
         bosshpmultiplier = 8,
+        dangerouscast = 2.5,
         debug = false,
         dotrefresh = 8,
         dotthreshold = 20,
@@ -253,33 +324,68 @@ ac.targets = {
     tankpoke = nil,
 }
 ac.timer = {
+    avoid = { timeout = 3000, last = 0},
+    breath = { frequency = 5000, last = 0},
     gcd = { last = 0},
     halfbeat = { frequency = 500, last = 0},
+    heal = { timeout = 3000, last = 0},
     heartbeat = { frequency = 1000, last = 0},
     jump = { timeout = 2000, last = 0},
-    peloton = { timeout = 3, last = 0},
+    peloton = { timeout = 1, last = 0},
     poll = { timeout = 200, last = 0},
     pulse = { frequency = 100, last = 0},
-    sprint = { timeout = 3, last = 0},
+    sprint = { timeout = 1, last = 0},
+    stuck = { timeout = 5, last = 0},
     weave = { timeout = 1400, frequency = 500, last = 0},
 }
+ac.todo = {}
 function ac.AutoFollow()
     if ac.settings.autolevel then
         local target = nil
-        local el = EntityList("alive,aggressive,maxdistance=25")
+        local el = EntityList("alive,aggressive,maxdistance=30")
         for i, e in pairs(el) do
             if e.chartype == 9 then
                 if ac.IsCaster() or ac.IsRange() then if ac.IsRange(e) or ac.IsCaster(e) then target = e end end
+                if ac.IsHealer() then if ac.IsRange(e) or ac.IsCaster(e) then target = e end end
+                if ac.IsTank() then if ac.IsMelee(e) then target = e end end
+                if ac.IsMelee() then if ac.IsTank(e) then target = e end end
+                if ac.IsMelee() then if ac.IsMelee(e) then target = e end end
+            end
+        end
+        local boss = MGetTarget()
+        if ac.IsTank() and boss and ac.boss then
+            for i, e in pairs(ac.boss) do
+                if e == boss.contentid then target = boss break end
             end
         end
         --if target then d("Job: "..tostring(target.job)) end
-        if Player.Incombat and target then
+        if Player.Incombat and target and not ac.flags.avoiding then
+            if ac.GetDistance(Player.pos,target.pos) > 2 then
+                if ac.flags.stuck then
+                    Player:MoveTo(target.pos.x,target.pos.y,target.pos.z)
+                end
+            end
             if ac.GetDistance(Player.pos,target.pos) > .4 then
             MoveDirectly3D(target.pos)
             elseif not MIsCasting() then
                 Player:Stop()
             end
         end
+    end
+end
+function ac.Avoidance()
+    if ac.settings.autolevel and ac.IsTank() then
+        if TimeSince(ac.timer.avoid.last) > ac.timer.avoid.timeout and not ac.flags.avoiding then
+            local t = MGetTarget()
+            if t and table.valid(t) then
+                local av = ac.avoid[t.castinginfo.castingid] or ac.avoid[t.castinginfo.channelingid]
+                if av then
+                    if av == "front" then ac.MoveToFront(t) ac.flags.avoiding = true ac.timer.avoid.last = Now() return end
+                    if av == "rear" then ac.MoveToRear(t) ac.flags.avoiding = true ac.timer.avoid.last = Now() return end
+                end
+            end
+        end
+        if TimeSince(ac.timer.avoid.last) > ac.timer.avoid.timeout then ac.flags.avoiding = false end
     end
 end
 function ac.CastChannel(target,action) local a = ActionList:Get(1,action)
@@ -310,11 +416,7 @@ function ac.CastWeave(target,action) local a = ActionList:Get(1,action)
 end
 function ac.Color(r,g,b,a) return GUI:ColorConvertFloat4ToU32(r,g,b,a) end
 function ac.CombatBard()
-    ac.range.aoeheal = 30
-    ac.flags.class = "ranged"
-    ac.range.basic = 25.0
-    ac.range.buff = 30.0
-    ac.range.cone = 12
+    
     if(ac.flags.mode == "simple") then
         
         --In Combat
@@ -362,14 +464,59 @@ function ac.CombatBard()
             if (not ac.HasDOT(ts,1)) then ac.CastInstant(ts,ac.actions.CausticBite)
             elseif (not ac.HasDOT(ts,2)) then ac.CastInstant(ts,ac.actions.Stormbite)
             else ac.CastInstant(ts,ac.actions.BurstShot) end
+            ac.CastInstant(ts,ac.actions.BurstShot)
+        end
+    end
+end
+function ac.CombatDarkKnight()
+    if ac.flags.mode == "simple" then
+        if(Duty:GetQueueStatus() == 4) then --inside dungeon
+            if(not ac.HasBuff("Grit") and not ac.IsInBossDungeon()) then
+                ActionList:Get(1, ac.actions.Grit):Cast()
+            end
+        end
+        -- Start Poking things when already in combat or have a tasty look on an innocent mob else stay put
+        local tp = ac.targets.tankpoke
+        local ts = ac.IsValidAttackTarget() or ac.targets.single or ac.targets.boss
+        local tc = ac.targets.cone or ts
+        if Player.Incombat then
+            if tc and ac.gauge.DRKdarkside < 30000 then ac.CastWeave(tc,ac.actions.FloodofDarkness) end
+            if tp then ac.CastInstant(tp,ac.actions.Unmend) end
+        else
+            local tp = ac.IsValidAttackTarget()
+            if tp and tp.distance2d > ac.range.basic and tp.distance2d < ac.range.long then ac.CastInstant(tp,ac.actions.Unmend) end
+        end
+        if ac.flags.canweave then
+            -- [MITIGATION]
+            
+            if ts and ts.hp.max > Player.hp.max * ac.settings.bosshpmultiplier or ac.IsAOEGood(ac.range.short) then --check if target is a boss, not sure with the algorithm
+                ac.flags.bosstarget = true
+                -- if Player.hp.percent < ac.settings.hpthreshold3 and not ac.HasBuff("Rampart") then ac.CastWeave(Player,ac.actions.Sentinel) end
+                -- if Player.hp.percent < ac.settings.hpthreshold3 and not ac.HasBuff("Rampart") and not ac.HasBuff("Sentinel") then ac.CastWeave(Player,ac.actions.Bulwark) end
+                -- if Player.hp.percent < ac.settings.hpcritical then ac.CastWeave(Player,ac.actions.HallowedGround) end
+            else
+                ac.flags.bosstarget = false
+            end
+        end
+        -- AOE TIME
+        if ac.IsAOEGood(ac.range.short) then
+            ac.CastInstant(Player,ac.actions.Unleash)
+        else    -- Less than AOE threshold
+            -- Dunno what logic to add...yet
+        end
+        --table.sort(ac.entities.enemies, function(l,r)	return math.distance3d(Player.pos,l.pos) < math.distance3d(Player.pos,r.pos) end)
+        table.sort(ac.targets.short, function(l,r) return (l.hp.current) < (r.hp.current) end)
+        table.sort(ac.targets.short, function(l,r) return (l.aggropercentage) < (r.aggropercentage) end)
+        -- [SINGLE TARGET ROTATION]
+        if table.valid(ac.targets.short) then
+            local ts = ac.IsValidAttackTarget() or ac.targets.short[1]
+            if ac.IsCombo(ac.actions.SyphonStrike) then ac.CastInstant(ts,ac.actions.Souleater) end
+            if ac.IsCombo(ac.actions.HardSlash) then ac.CastInstant(ts,ac.actions.SyphonStrike) end
+            if not ac.IsCombo(ac.actions.HardSlash) then ac.CastInstant(ts,ac.actions.HardSlash) end
         end
     end
 end
 function ac.CombatDragoon()
-    ac.range.basic = 3
-    ac.range.cone = 7
-    ac.range.jump = 20
-    ac.range.jumpmin = 13
     if ac.flags.mode == "simple" then
         local tc = ac.targets.cone
         if (ac.IsAOECandidate(tc)) and ac.HasBuff("Power Surge") then ac.CastInstant(tc,ac.actions.DoomSpike) end
@@ -396,18 +543,14 @@ function ac.CombatDragoon()
         end
         if tr then
             if TimeSince(ac.timer.jump.last) > ac.timer.jump.timeout then
-                if ac.IsAOECandidate(tr) and tr.distance2d > ac.range.jumpmin and Player.hp.current > ac.settings.hpthreshold1 then ac.CastWeave(tr,ac.actions.DragonfireDive) end
-                if tr.distance2d > ac.range.jumpmin and Player.hp.current > ac.settings.hpthreshold1 then ac.CastWeave(tr,ac.actions.SpineshatterDive) end
+                if ((ac.IsAOECandidate(tr) and tr.distance2d > ac.range.jumpmin) or ac.settings.autolevel and ac.IsInDungeon()) and Player.hp.percent > ac.settings.hpthreshold1 then ac.CastWeave(tr,ac.actions.DragonfireDive) end
+                if (tr.distance2d > ac.range.jumpmin or ac.settings.autolevel and ac.IsInDungeon()) and Player.hp.percent > ac.settings.hpthreshold1 then ac.CastWeave(tr,ac.actions.SpineshatterDive) end
                 if not ac.HasBuff("Life Surge") and tr.distance2d > ac.range.basic+2 and not (ac.flags.lastaction == ac.actions.SpineshatterDive or ac.flags.lastaction == ac.actions.DragonfireDive) then ac.CastInstant(tr,ac.actions.PiercingTalon) end
             end
         end
     end
 end
 function ac.CombatPaladin()
-    ac.flags.class = "tank"
-    ac.range.basic = 3
-    ac.range.short = 5
-    ac.range.long = 20
     if(ac.flags.mode == "simple") then
         if(Duty:GetQueueStatus() == 4) then --inside dungeon
             if(not ac.HasBuff("Iron Will") and not ac.IsInBossDungeon()) then
@@ -433,10 +576,8 @@ function ac.CombatPaladin()
                     ac.CastWeave(Player,ac.actions.Sheltron)
                 end
             end
-            if ts and ts.hp.max > Player.hp.max * ac.settings.bosshpmultiplier or ac.IsAOEGood(ac.range.short) and ac.flags.canweave then --check if target is a boss, not sure with the algorithm
+            if ts and ts.hp.max > Player.hp.max * ac.settings.bosshpmultiplier or ac.IsAOEGood(ac.range.short) then --check if target is a boss, not sure with the algorithm
                 ac.flags.bosstarget = true
-                if Player.hp.percent < ac.settings.hpthreshold1 then ac.CastWeave(Player,ac.actions.Reprisal) end
-                if Player.hp.percent < ac.settings.hpthreshold2 then ac.CastWeave(Player,ac.actions.Rampart) end
                 if Player.hp.percent < ac.settings.hpthreshold3 and not ac.HasBuff("Rampart") then ac.CastWeave(Player,ac.actions.Sentinel) end
                 if Player.hp.percent < ac.settings.hpthreshold3 and not ac.HasBuff("Rampart") and not ac.HasBuff("Sentinel") then ac.CastWeave(Player,ac.actions.Bulwark) end
                 if Player.hp.percent < ac.settings.hpcritical then ac.CastWeave(Player,ac.actions.HallowedGround) end
@@ -446,8 +587,8 @@ function ac.CombatPaladin()
         end
         -- AOE TIME
         if ac.IsAOEGood(ac.range.short) then
-            if ac.flags.canweave then ac.CastInstant(Player,ac.actions.FightOrFlight) end
-            if ac.flags.canweave then ac.CastInstant(Player,ac.actions.CircleOfScorn) end
+            if ac.flags.canweave then ac.CastWeave(Player,ac.actions.FightOrFlight) end
+            if ac.flags.canweave then ac.CastWeave(Player,ac.actions.CircleOfScorn) end
             if (ac.flags.lastaction == ac.actions.TotalEclipse) then ac.CastInstant(Player,ac.actions.Prominence) end
             ac.CastInstant(Player,ac.actions.TotalEclipse)
         else    -- Less than AOE threshold
@@ -459,10 +600,10 @@ function ac.CombatPaladin()
         -- [SINGLE TARGET ROTATION]
         if table.valid(ac.targets.short) then
             local ts = ac.IsValidAttackTarget() or ac.targets.short[1]
-            if ac.flags.canweave and ac.flags.bosstarget then ac.CastInstant(Player,ac.actions.FightOrFlight) end
-            if ac.flags.canweave and ac.flags.bosstarget then ac.CastInstant(Player,ac.actions.CircleOfScorn) end
-            if ac.flags.canweave then ac.CastInstant(ts,ac.actions.SpiritsWithin) end
-            if ac.flags.canweave then ac.CastInstant(ts,ac.actions.GoringBlade) end
+            if ac.HasBuff("Fight or Flight") and ActionList:Get(1,ac.actions.GoringBlade).cd == 0 then ac.CastInstant(ts,ac.actions.GoringBlade) end
+            if ac.flags.canweave and ac.flags.bosstarget then ac.CastWeave(Player,ac.actions.FightOrFlight) end
+            if ac.flags.canweave and ac.flags.bosstarget then ac.CastWeave(Player,ac.actions.CircleOfScorn) end
+            if ac.flags.canweave then ac.CastWeave(ts,ac.actions.SpiritsWithin) end
             if ts.castinginfo.castinginterruptible and ac.flags.toughness > ac.settings.bosshpmultiplier / 2 then
                 ac.flags.caninterrupt = true    -- Dont remove these flags, they're used for debugging purposes
                 ac.CastInstant(ts,ac.actions.ShieldBash)
@@ -477,14 +618,10 @@ function ac.CombatPaladin()
     end
 end
 function ac.CombatSage()
-    ac.range.aoe = 15
-    ac.range.aoeheal = 15
-    ac.range.basic = 25
-    ac.range.heal = 30
     if ac.flags.mode == "simple" then
         local ts = ac.IsValidAttackTarget() or ac.targets.single
         local th = ac.IsValidHealTarget() or ac.targets.heal
-        local tr = ac.IsValidReviveTarget() or ac.targets.revive
+        local tz = ac.IsValidReviveTarget() or ac.targets.revive
 
         -- AOE HEALS
         if ac.flags.damagedfriends >= #ac.entities.friends/2 then
@@ -507,22 +644,17 @@ function ac.CombatSage()
     end
 end
 function ac.CombatSummoner()
-    ac.range.basic = 25
-    ac.range.heal = 30
     if ac.flags.mode == "simple" then
-        
         local tz = ac.IsValidReviveTarget() or ac.targets.revive
         local tr = ac.IsValidAttackTarget() or ac.targets.rangecircle
         local ts = ac.IsValidAttackTarget() or ac.targets.single or ac.targets.boss
         local th = ac.IsValidHealTarget() or ac.targets.heal
         
         if ac.flags.canweave then
-            if Player.mp.current < ac.settings.mphalf then ac.CastWeave(Player,ac.actions.LucidDreaming) end
+            
             if Player.hp.percent < ac.settings.hpthreshold1 or ac.flags.teamdamage > ac.settings.aoeheal1 then ac.CastInstant(Player,ac.actions.RadiantAegis) end
             
             if ts then
-                ac.GetToughness(ts)
-                if ac.flags.toughness > ac.settings.bosshpmultiplier then ac.CastWeave(ts,ac.actions.Addle) end
                 if ac.gauge.SMNaetherflow == 0 then ac.CastWeave(ts,ac.actions.EnergyDrain) end
                 if ac.gauge.SMNaetherflow > 0 then ac.CastWeave(ts,ac.actions.Fester) end
             end
@@ -554,84 +686,72 @@ function ac.CombatSummoner()
         end
     end
 end
+function ac.CombatWarrior()
+    if ac.flags.mode == "simple" then
+        if(Duty:GetQueueStatus() == 4) then --inside dungeon
+            if(not ac.HasBuff("Defiance") and not ac.IsInBossDungeon()) then
+                ActionList:Get(1, ac.actions.Defiance):Cast()
+            end
+        end
+        local tp = ac.targets.tankpoke
+        local ts = ac.IsValidAttackTarget() or ac.targets.single
+        if Player.Incombat then
+            if tp and tp.distance2d > ac.range.basic then ac.CastInstant(tp,ac.actions.Tomahawk) end
+            if ac.flags.canweave then
+                -- MITS
+                if Player.hp.percent < ac.settings.hpcritical then ac.CastWeave(ts,ac.actions.Holmgang) end
+                if Player.hp.percent < ac.settings.hpthreshold3 and not ac.HasBuff("Rampart") then ac.CastWeave(Player,ac.actions.Vengeance) end
+                if Player.hp.percent < ac.settings.hpthreshold3 then ac.CastWeave(Player,ac.actions.ThrillofBattle) end
+                ac.CastWeave(Player,ac.actions.Berserk)
+            end
+            if ac.IsAOEGood(ac.range.short) then ac.CastInstant(Player,ac.actions.Overpower) end
+        else
+            local tp = ac.IsValidAttackTarget() or ac.targets.tankpoke
+            if tp and tp.distance2d > ac.range.basic and tp.distance2d < ac.range.long then ac.CastInstant(tp,ac.actions.Tomahawk) end
+        end
+        table.sort(ac.targets.short, function(l,r) return (l.hp.current) < (r.hp.current) end)
+        table.sort(ac.targets.short, function(l,r) return (l.aggropercentage) < (r.aggropercentage) end)
+        -- [SINGLE TARGET ROTATION]
+        if table.valid(ac.targets.short) then
+            local ts = ac.IsValidAttackTarget() or ac.targets.short[1]
+            if ac.gauge.WARbeast > 50 then ac.CastInstant(ts,ac.actions.InnerBeast) end
+            if ac.IsCombo(ac.actions.Maim) then ac.CastInstant(ts,ac.actions.StormsPath) end
+            if ac.IsCombo(ac.actions.HeavySwing) then ac.CastInstant(ts,ac.actions.Maim) end
+            if not ac.IsCombo(ac.actions.HeavySwing) then ac.CastInstant(ts,ac.actions.HeavySwing) end
+        end
+        local tl = ac.IsValidAttackTarget() or ac.GetMobsInRange(ac.range.long,true)[1]
+        --if tl then ac.CastInstant(tl,ac.actions.Tomahawk) end
+    end
+end
 function ac.CombatWhiteMage() --Whole section needs overhaul, I still can't find the time
-    ac.range.aoe = 15
-    ac.range.basic = 25
-    ac.range.heal = 30
     if (ac.flags.mode == "simple") then
-        local el = EntityList("alive,targetable")
-        ac.entities.friends = {}
-        table.insert(ac.entities.friends, Player)
-        for _, entity in pairs(el) do   -- search for friendlies within range
-            if (entity.distance2d < ac.range.heal and not entity.attackable and entity.hp.percent > 0 and entity.los2) then
-                table.insert(ac.entities.friends, entity)
-            end
-        end
-        table.sort(ac.entities.friends, function(l,r) return (l.hp.percent) < (r.hp.percent) end)
-        local target = ac.entities.friends[1]
-        if (target.hp.percent < ac.settings.hpthreshold1 and Player.mp.current > ac.settings.mpcritical) then
-            Player:SetTarget(target.id)
-            local a = ActionList:Get(1, ac.actions.Cure)
-            if(not MIsCasting() and not Player:IsMoving() and ac.GCD()) then
-                a:Cast(target.id)
-            end
-        end
-        if (Duty:GetQueueStatus() ~= 4) then --[OUTSIDE DUNGEON BEHAVIOUR]
-            local target = Player:GetTarget()
-            if(target and target.attackable) then
-                local a = ActionList:Get(1, ac.actions.Aero)
-                if (not IsMounted() and not MIsCasting() and ac.GCD() and not ac.HasDOT(target,1) and Player.level >= 4) then
-                    a:Cast(target.id)
-                end
-            end
-            target = Player:GetTarget()
-            if (target and target.attackable and target.distance2d < ac.range.basic) then
-                --SINGLE TARGET ROTATION
-                local a = ActionList:Get(1, ac.actions.Aero)
-                if (not IsMounted() and not MIsCasting() and ac.GCD() and not ac.HasDOT(target,1) and Player.level >= 4) then
-                    a:Cast(target.id)
-                end
+        local tz = ac.targets.revive or ac.IsValidReviveTarget()
+        local tr = ac.IsValidAttackTarget() or ac.targets.rangecircle
+        local ts = ac.IsValidAttackTarget() or ac.targets.single or ac.targets.boss
+        local th = ac.IsValidHealTarget() or ac.targets.heal
 
-                local a = ActionList:Get(1, ac.actions.Stone)
-                if (not MIsCasting() and not Player:IsMoving() and ac.GCD()) then
-                    a:Cast(target.id)
-                end
-            end
-        else    --[INSIDE DUNGEON BEHAVIOUR]
-            local el = EntityList("alive,attackable,aggro")
-            ac.entities.enemies = {}
-            for _, entity in pairs(el) do
-                if(entity.distance2d <= ac.range.basic and entity.los2) then
-                    table.insert(ac.entities.enemies, entity)
-                end
-            end
-            if (table.valid(ac.entities.enemies)) then
-                
-            end
-            table.sort(ac.entities.enemies, function (l,r) return (l.hp.current) < (r.hp.current) end)
-            table.sort(ac.entities.enemies, function (l,r) return (l.aggropercentage) > (r.aggropercentage) end)
-            table.sort(ac.entities.enemies, function (l,r) return not ac.HasDOT(l,1) and ac.HasDOT(r,1) end)
-            if(table.valid(ac.entities.enemies)) then
-                Player:SetTarget(ac.entities.enemies[1].id)
-                local target = Player:GetTarget()
-                --SINGLE TARGET ROTATION
-                local a = ActionList:Get(1, ac.actions.Aero)
-                if (ac.GCD() and not ac.HasDOT(target,1) and Player.level >= 4) then
-                    a:Cast(target.id)
-                end
-                local a = ActionList:Get(1, ac.actions.Stone)
-                if (not MIsCasting() and not Player:IsMoving() and ac.GCD()) then
-                    a:Cast(target.id)
-                end
-            end
+        if ac.flags.canheal and ac.IsAOEHealGood() and ac.flags.teamdamage > ac.settings.aoeheal2 then ac.CastChannel(Player,ac.actions.Cure3) end
+        if ac.flags.canheal and ac.IsAOEHealGood() and ac.flags.teamdamage > ac.settings.aoeheal0 then ac.CastChannel(Player,ac.actions.Medica) end
+
+        if ac.flags.canweave and ts then
+            if ac.GetToughness(ts) > 10 then ac.CastWeave(Player,ac.actions.PresenceofMind) end
         end
-        local target = Player:GetTarget()
-        if (target and target.attackable and ac.HasDOT(target,1) and Player:IsMoving()) then
-            local a = ActionList:Get(1, ac.actions.Aero)
-            if (ac.GCD()) then
-                a:Cast(target.id)
-            end
+
+        if tz and (ac.flags.canweave or not Player.Incombat)then
+            if ac.HasBuff("Swiftcast") then ac.CastInstant(tz,ac.actions.Raise) end
+            ActionList:Get(1,ac.actions.Swiftcast):Cast()
         end
+        if th then
+            if th.hp.percent < ac.settings.hpthreshold1 and Player:IsMoving() and not ac.HasBuff("Regen", th) then ac.CastInstant(th,ac.actions.Regen) end
+            if ac.flags.canheal and th.hp.percent < ac.settings.hpthreshold2 then ac.CastChannel(th,ac.actions.Cure2) end
+            --if th.hp.percent < ac.settings.hpthreshold1 and ac.HasBuff("Freecure") then ac.CastChannel(th,ac.actions.Cure2) end
+            if ac.flags.canheal and th.hp.percent < ac.settings.hpthreshold2 then ac.CastChannel(th,ac.actions.Cure) end
+        end
+        if ts then
+            if Player:IsMoving() or not ac.HasDOT(ts,1) then ac.CastInstant(ts,ac.actions.Aero) end
+            ac.CastChannel(ts,ac.actions.Stone)
+        end
+
     end
 end
 function ac.DrawCircle(pos,radius,color,segments) --for AOE detection and drawing functionality to come
@@ -692,12 +812,12 @@ function ac.Draw()
     local open, visible = true, true
     if(open) then
         if Player.Incombat then
-            GUI:PushStyleColor(GUI.Col_WindowBg,.4,.07,.07,.9)
+            GUI:PushStyleColor(GUI.Col_WindowBg,.4,.07,.07,1)
         else
-            GUI:PushStyleColor(GUI.Col_WindowBg,0,.05,.05,.9)
+            GUI:PushStyleColor(GUI.Col_WindowBg,0,.05,.05,1)
         end
 
-        if ac.settings.debug then GUI:SetNextWindowSize(300, 504) else GUI:SetNextWindowSize(124, 124) end
+        if ac.settings.debug then GUI:SetNextWindowSize(320, 510) else GUI:SetNextWindowSize(124, 124) end
         GUI:PushStyleVar(GUI.StyleVar_Alpha,1)
         visible, open = GUI:Begin("EASE Core", open, GUI.WindowFlags_NoResize+GUI.WindowFlags_NoCollapse)
         if(visible) then
@@ -730,7 +850,7 @@ function ac.Draw()
                 ac.SaveSettings()
             end
             local cbAutolevel, pAutolevel = GUI:Checkbox("A2Lvl", ac.settings.autolevel) if GUI:IsItemHovered() then GUI:SetTooltip("Auto Level") end
-            if pAutolevel then ac.settings.autolevel = not ac.settings.autolevel ac.SaveSettings() end
+            if pAutolevel then ac.settings.autolevel = not ac.settings.autolevel Player:Stop() ac.SaveSettings() end
             if ac.settings.autolevel and ac.IsInDungeon() then
                 local progress = 100/#ac.todo*ac.flags.missionindex
                 GUI:SameLine() GUI:Text(""..string.format("%.1f",progress).."%%")
@@ -740,9 +860,10 @@ function ac.Draw()
             if ac.settings.debug and ac.InGame() then
                 GUI:Text("mapid:"..tostring(Player.localmapid)) GUI:SameLine()
                 local duty = FileLoad(GetLuaModsPath().."EASECore\\maps\\dev\\"..tostring(Player.localmapid)..".lua") or {}
-                local bRecord = GUI:Button("Rec")
+                local bRecord = GUI:Button("Rec") GUI:SameLine() GUI:Text("x:"..string.format("%.2f",Player.pos.x).." y:"..string.format("%.2f",Player.pos.y).." z:"..string.format("%.2f",Player.pos.z))
                 if MGetTarget() then
-                    GUI:SameLine() GUI:Text("Dist:"..string.format("%.2f",ac.GetDistance(Player.pos,MGetTarget().pos)))
+                    GUI:Text("Dist:"..string.format("%.2f",ac.GetDistance(Player.pos,MGetTarget().pos)))
+                    GUI:SameLine() GUI:Text("Dist2D: "..string.format("%.2f",MGetTarget().distance2d))
                 end
                 if bRecord then
                     local t = MGetTarget() or Player
@@ -758,7 +879,7 @@ function ac.Draw()
                 end
                 GUI:Text("lastcombat:"..tostring(TimeSince(ac.flags.lastcombat))) GUI:SameLine() GUI:Text("mIndex:"..tostring(ac.flags.missionindex))
                 
-                GUI:SameLine() GUI:Text("stuck:"..tostring(ac.flags.stuck)) 
+                GUI:SameLine() GUI:Text("stuck:"..tostring(ac.flags.stuck).." for:"..tostring(ac.flags.stucktime))
                 
                 GUI:Text("Job: "..tostring(Player.job)) GUI:SameLine()
                 GUI:Text("Idle: "..string.format("%.2f",ac.flags.idletime)) GUI:SameLine()
@@ -778,8 +899,7 @@ function ac.Draw()
                 if(t ~= nil) then
                     GUI:Text("Target: "..tostring(t.name))
                     --Player:SetFacing(t.pos.x,t.pos.y,t.pos.z,true)
-                    GUI:Text("GetPositional: "..tostring(ac.GetPositional(t))) GUI:SameLine()
-                    GUI:Text("Distance: "..string.format("%.2f",t.distance2d))
+                    GUI:Text("Positional: "..tostring(ac.GetPositional(t)))
                    -- GUI:Text("Cone: "..tostring(ac.EnemiesInsideCone(ac.range.cone,t))) GUI:SameLine()
                     local rad = math.atan2(t.pos.x-Player.pos.x, t.pos.z-Player.pos.z)
                     GUI:Text("Rad: "..string.format("%.2f",rad)) GUI:SameLine() GUI:Text("Deg: "..string.format("%.2f",math.deg(rad)))
@@ -805,10 +925,11 @@ function ac.Draw()
                 if not ac.flags.lastaction then GUI:Text("lastaction:"..tostring(ac.flags.lastaction)) end
                 local mx, my = ac.W2S(GetMouseInWorldPos())
                 GUI:Text("mx:"..tostring(mx).." my:"..tostring(my).." driving:"..tostring(PlayerDriving()))
-                GUI:Text("queue:"..string.format("%.2f",ac.flags.queue).." gcd:"..string.format("%.2f",ac.flags.gcd).." last gcd:"..tostring(ac.timer.gcd.last))
+                GUI:Text("queue:"..string.format("%.2f",ac.flags.queue).." gcd:"..string.format("%.2f",ac.flags.gcd).." last gcd:"..tostring(TimeSince(ac.timer.gcd.last)))
                 GUI:Text("canweave:"..tostring(ac.flags.canweave).." lastweave:"..tostring(ac.flags.lastweave))
-                GUI:Text("canpoll:"..tostring(ac.flags.canpoll).." lastpoll:"..tostring(ac.timer.poll.last))
+                GUI:Text("canpoll:"..tostring(ac.flags.canpoll).." lastpoll:"..tostring(TimeSince(ac.timer.poll.last)))
                 GUI:Text("polled:"..tostring(ac.poll.gcd).." lastaction:"..tostring(Player.castinginfo.lastcastid))
+                GUI:Text("avoiding:"..tostring(ac.flags.avoiding).." lastheal:"..tostring(TimeSince(ac.timer.heal.last)))
                 --local x, y = RenderManager:WorldToScreen({pos.x,pos.y,pos.z}, true)
                 --GUI:Text("x: "..tostring(x).." y: "..tostring(y))
                 --GUI:AddCircleFilled( x/2, 1-y, 100,GUI:ColorConvertFloat4ToU32(0.9,0.1,0.12,0.5),32)
@@ -857,17 +978,29 @@ function ac.GetEnemiesInsideRadius(radius)
     for _, e in pairs(el) do table.insert(entities, e) end
     return entities
 end
+function ac.GetEntity(name,range)
+    local el,t  = EntityList("maxdistance2d="..tostring(range)),nil
+    for i, e in pairs(el) do
+        if e.name == name then t = e return t end
+    end
+end
 function ac.GetDeadFriends(radius)
     local el = EntityList.myparty or EntityList.crossworldparty
+    if #el == 0 then
+        el = EntityList("targetable,chartype=9,maxdistance=30")
+    end
     local deadfriends = {}
     for _, e in pairs(el) do
-        if (not e.alive and ac.GetDistance(Player.pos,e.pos) < radius and e.hp.percent == 0) then table.insert(friends, e) end
+        if (not e.alive and ac.GetDistance(Player.pos,e.pos) < radius and e.hp.percent == 0) then table.insert(deadfriends, e) end
     end
     return deadfriends
 end
 function ac.GetFriends(radius)
     local el = EntityList.myparty or EntityList.crossworldparty
-    local friends = {}
+    if #el == 0 then
+        el = EntityList("alive,targetable,chartype=9,maxdistance=30")
+    end
+    local friends = {} table.insert(friends,Player)
     ac.flags.damagedfriends = 0
     for _, e in pairs(el) do
         if (ac.GetDistance(Player.pos,e.pos) < radius) then
@@ -982,7 +1115,7 @@ function ac.GetPrioritySingleTarget()
             if not durl1 then durl1 =0 end if not durl2 then durl2 =0 end if not durr1 then durr1 =0 end if not durr2 then durr2 =0 end
             return (durl1 < ac.settings.dotrefresh or durl2 < ac.settings.dotrefresh) and not (durr1 < ac.settings.dotrefresh or durr2 < ac.settings.dotrefresh) end)
     end
-    if ac.IsPaladin() then
+    if ac.IsTank() then
         angrymobs = ac.GetMobsInRange(ac.range.long,true)
         table.sort(angrymobs, function(l,r) return (l.aggropercentage) < (r.aggropercentage) end)
         table.sort(angrymobs, function(l,r) return not (l.aggro) and (r.aggro) end)
@@ -994,14 +1127,16 @@ function ac.GetPrioritySingleTarget()
     return angrymobs[1]
 end
 function ac.GetPriorityTankPoke()
-    if ac.IsPaladin() then
+    if ac.IsTank() then
         local innocentmobs = ac.GetMobsInRange(ac.range.long,false)
         return innocentmobs[1]
     end
 end
 function ac.GetTeamDamageReached(damage) if (damage >= ac.flags.teamdamage) then return true else return false end end
 function ac.GetToughness(target)
-    ac.flags.toughness = target.hp.max / Player.hp.max
+    ac.flags.toughness = 0
+    if target ~= nil then ac.flags.toughness = target.hp.max / Player.hp.max end
+    return ac.flags.toughness
 end
 function ac.HasBuff(name, target)
     local target = target or Player
@@ -1042,26 +1177,64 @@ function ac.InitDungeon()
         table.insert(ac.todo, {e, done = false} )
     end
 end
+function ac.InitJob()
+    if ac.IsBard() then
+        ac.range.aoeheal = 30
+        ac.range.basic = 25.0
+        ac.range.buff = 30.0
+        ac.range.cone = 12
+    end
+    if ac.IsDragoon() then
+        ac.range.basic = 3
+        ac.range.cone = 7
+        ac.range.jump = 20
+        ac.range.jumpmin = 13
+    end
+    if ac.IsTank() then
+        ac.range.basic = 3
+        ac.range.cone = 7
+        ac.range.short = 5
+        ac.range.long = 20
+    end
+    if ac.IsHealer() then
+        ac.range.aoe = 15
+        ac.range.aoeheal = 15
+        ac.range.basic = 25
+        ac.range.heal = 30
+    end
+    if ac.IsSummoner() then
+        ac.range.basic = 25
+        ac.range.heal = 30
+    end
+end
 function ac.InGame() return MGetGameState() == FFXIV.GAMESTATE.INGAME end
 function ac.IsActionReady(action) return (action.level <= Player.level and not action.isoncd) end
 function ac.IsAOECandidate(target) if (target and target.ents >= ac.settings.aoethreshold) then return target else return false end end
 function ac.IsAOEGood(radius) return #ac.GetEnemiesInsideRadius(radius) >= ac.settings.aoethreshold end
-function ac.IsAOEHealGood() return (ac.flags.damagedfriends >= #ac.entities.friends/2) end
+function ac.IsAOEHealGood() if #ac.entities.friends ~= 0 then return (ac.flags.damagedfriends >= #ac.entities.friends/2) end end
 function ac.IsCombo(action) return ac.flags.lastaction == action end
-function ac.IsBard(target) local t = target or Player return (t.job == FFXIV.JOBS.ARCHER or t.job == FFXIV.JOBS.BARD) end
-function ac.IsBlackMage(target) local t = target or Player return (t.job == FFXIV.JOBS.THAUMATURGE or t.job == FFXIV.JOBS.BLACKMAGE) end
-function ac.IsDragoon(target) local t = target or Player return (t.job == FFXIV.JOBS.LANCER or t.job == FFXIV.JOBS.DRAGOON) end
-function ac.IsPaladin(target) local t = target or Player return (t.job == FFXIV.JOBS.GLADIATOR or t.job == FFXIV.JOBS.PALADIN) end
-function ac.IsSage(target) local t = target or Player return (t.job == FFXIV.JOBS.SAGE) end
-function ac.IsSummoner(target) local t = target or Player return (t.job == FFXIV.JOBS.ARCANIST or t.job == FFXIV.JOBS.SUMMONER) end
-function ac.IsWhiteMage(target) local t = target or Player return (t.job == FFXIV.JOBS.CONJURER or t.job == FFXIV.JOBS.WHITEMAGE) end
-function ac.IsTank(target) local t = target or Player return (ac.IsPaladin(t)) end
-function ac.IsHealer(target) local t = target or Player return (ac.IsSage(t) or ac.IsWhiteMage(t)) end
-function ac.IsMelee(target) local t = target or Player return (ac.IsDragoon()) end
-function ac.IsRange(target) local t = target or Player return (ac.IsBard(t)) end
-function ac.IsCaster(target) local t = target or Player return (ac.IsSummoner(t) or ac.IsBlackMage(t)) end
+function ac.IsAstrologian(target) local t = target or Player return t.job == FFXIV.JOBS.ASTROLOGIAN end
+function ac.IsBard(target) local t = target or Player return t.job == FFXIV.JOBS.ARCHER or t.job == FFXIV.JOBS.BARD end
+function ac.IsBlackMage(target) local t = target or Player return t.job == FFXIV.JOBS.THAUMATURGE or t.job == FFXIV.JOBS.BLACKMAGE end
+function ac.IsDarkKnight(target) local t = target or Player return t.job == FFXIV.JOBS.DARKKNIGHT end
+function ac.IsDragoon(target) local t = target or Player return t.job == FFXIV.JOBS.LANCER or t.job == FFXIV.JOBS.DRAGOON end
+function ac.IsMachinist(target) local t = target or Player return t.job == FFXIV.JOBS.MACHINIST end
+function ac.IsMonk(target) local t = target or Player return t.job == FFXIV.JOBS.PUGILIST or t.job == FFXIV.JOBS.MONK end
+function ac.IsNinja(target) local t  = target or Player return t.job == FFXIV.JOBS.ROGUE or t.job == FFXIV.JOBS.NINJA end
+function ac.IsPaladin(target) local t = target or Player return t.job == FFXIV.JOBS.GLADIATOR or t.job == FFXIV.JOBS.PALADIN end
+function ac.IsRedMage(target) local t = target or Player return t.job == FFXIV.JOBS.REDMAGE end
+function ac.IsSage(target) local t = target or Player return t.job == FFXIV.JOBS.SAGE end
+function ac.IsScholar(target) local t = target or Player return t.job == FFXIV.JOBS.SCHOLAR end
+function ac.IsSummoner(target) local t = target or Player return t.job == FFXIV.JOBS.ARCANIST or t.job == FFXIV.JOBS.SUMMONER end
+function ac.IsWarrior(target) local t = target or Player return t.job == FFXIV.JOBS.MARAUDER or t.job == FFXIV.JOBS.WARRIOR end
+function ac.IsWhiteMage(target) local t = target or Player return t.job == FFXIV.JOBS.CONJURER or t.job == FFXIV.JOBS.WHITEMAGE end
+function ac.IsTank(target) local t = target or Player return ac.IsPaladin(t) or ac.IsWarrior(t) or ac.IsDarkKnight(t) end
+function ac.IsHealer(target) local t = target or Player return ac.IsWhiteMage(t) or ac.IsScholar(t) or ac.IsAstrologian(t) or ac.IsSage(t) end
+function ac.IsMelee(target) local t = target or Player return ac.IsDragoon(t) or ac.IsMonk(t) or ac.IsNinja(t) end
+function ac.IsRange(target) local t = target or Player return ac.IsBard(t) or ac.IsMachinist(t) end
+function ac.IsCaster(target) local t = target or Player return ac.IsSummoner(t) or ac.IsBlackMage(t) or ac.IsRedMage(t) end
 function ac.IsOnline(target) return target.onlinestatus == 43 end
-function ac.IsDOTexpiring(target,dotnum)
+function ac.IsDOTexpiring(target,dotnum) -- needs refactoring
     if ac.IsBard() then
         if dotnum == 1 then
             local a, b, c = ac.HasBuff("Venomous Bite", target) local d, e, f = ac.HasBuff("Caustic Bite", target)
@@ -1072,9 +1245,16 @@ function ac.IsDOTexpiring(target,dotnum)
         end
     end
 end
+function ac.IsCastingSomethingDangerous(target)
+    ac.GetToughness(target)
+    if target and table.valid(target) then if target.castinginfo.channeltime > ac.settings.dangerouscast and ac.flags.toughness > ac.settings.bosshpmultiplier then return true end end
+end
+function ac.IsCastingSomethingDangerousInterruptible(target)
+    if ac.IsCastingSomethingDangerous(target) and target.castinginfo.castinginterruptible then return true end
+end
 function ac.IsStuck()
     local p = Player.pos local pp = ac.flags.prevpos
-    if pp.x ~= nil and ac.GetDistance({x=p.x,y=p.y,z=p.z},{x=pp.x,y=pp.y,z=pp.z}) < ac.constants.stuckdistance then return true end
+    if pp.x ~= nil and ac.GetDistance({x=p.x,y=p.y,z=p.z},{x=pp.x,y=pp.y,z=pp.z}) < ac.constants.stuckdistance and Player:IsMoving() then ac.timer.stuck.last = Now() return true end
     ac.flags.prevpos = Player.pos
 end
 function ac.IsValidAttackTarget()
@@ -1094,10 +1274,8 @@ function ac.IsValidReviveTarget()
     if (target and not target.alive and not target.attackable and target.los2) then ac.targets.manual = target return target else ac.targets.manual = nil return false end
 end
 function ac.IsInDungeon()
-    local maps = {"Brayflox's Longstop","Stone Vigil"}
-    for i, e in pairs(maps) do
-        if GetMapName(Player.localmapid) == e then return true end
-    end
+    local maps = {"Sastasha","The Tam-Tara Deepcroft","Copperbell Mines","The Thousand Maws of Toto-Rak","Haukke Manor","Brayflox's Longstop","Stone Vigil","The Keeper of the Lake","Sohm Al","The Aery","The Vault"}
+    for i, e in pairs(maps) do if GetMapName(Player.localmapid) == e then return true end end
     return false
 end
 function ac.IsInBossDungeon()
@@ -1107,25 +1285,41 @@ function ac.IsInBossDungeon()
     return false
 end
 function ac.IsSupported() if ac.IsBard() or ac.IsPaladin() or ac.IsWhiteMage() or ac.IsSage() or ac.IsSummoner() then return true else return false end end
+function ac.MoveToFront(target)
+    local pos = GetPosFromDistanceHeading(target.pos, 1, target.pos.h)
+    Player:MoveTo(pos.x,pos.y,pos.z)
+end
+function ac.MoveToRear(target)
+    local targetheading = HeadingToDegrees(target.pos.h)
+    targetheading = targetheading + 180
+    if targetheading > 360 then targetheading = targetheading - 360 end
+    targetheading = DegreesToHeading(targetheading)
+    local pos = GetPosFromDistanceHeading(target.pos, 1, targetheading)
+    Player:MoveTo(pos.x,pos.y,pos.z)
+end
+function ac.RestartDungeon() Player:Stop() ac.CastChannel(Player,ac.actions.Return) ac.settings.missionindex = 1 ac.SaveSettings() ac.InitDungeon() end
 function ac.SaveSettings() local save = FileSave(GetLuaModsPath().."EASECore\\settings.ini", ac.settings) end
 function ac.ToggleDebug() ac.settings.debug = not ac.settings.debug ac.SaveSettings() end
 function ac.Update()
-    -- TIME SLICES --Player.targetable means game is in loading screen when false
-    if (TimeSince(ac.timer.heartbeat.last) > ac.timer.heartbeat.frequency and Player.targetable) then ac.UpdateHeartbeat() end
-    if (TimeSince(ac.timer.halfbeat.last) > ac.timer.halfbeat.frequency and Player.targetable) then ac.UpdateHalfbeat() end
-    if (TimeSince(ac.timer.pulse.last) > ac.timer.pulse.frequency and Player.targetable) then ac.UpdatePulse() end
+    -- TIME SLICES -- not Player.targetable means game is in between loading screen
+    if TimeSince(ac.timer.breath.last) > ac.timer.breath.frequency and Player.targetable then ac.UpdateBreath() end
+    if TimeSince(ac.timer.heartbeat.last) > ac.timer.heartbeat.frequency and Player.targetable then ac.UpdateHeartbeat() end
+    if TimeSince(ac.timer.halfbeat.last) > ac.timer.halfbeat.frequency and Player.targetable then ac.UpdateHalfbeat() end
+    if TimeSince(ac.timer.pulse.last) > ac.timer.pulse.frequency and Player.targetable then ac.UpdatePulse() end
     -- TICKS
     if ac.settings.autocombat and ac.InGame() then
         if ac.IsBard() then ac.CombatBard() end
+        if ac.IsDarkKnight() then ac.CombatDarkKnight() end
         if ac.IsDragoon() then ac.CombatDragoon() end
         if ac.IsPaladin() then ac.CombatPaladin() end
         if ac.IsSage() then ac.CombatSage() end
         if ac.IsSummoner() then ac.CombatSummoner() end
+        if ac.IsWarrior() then ac.CombatWarrior() end
         if ac.IsWhiteMage() then ac.CombatWhiteMage() end
-        
         ------------------
         ac.UpdateActions()
         ac.AutoFollow()
+        ac.Avoidance()
     end
     if ac.settings.autolevel and not ac.flags.hasinitdungeon and ac.IsInDungeon() then
         ac.InitDungeon()
@@ -1170,11 +1364,20 @@ function ac.UpdateActions()
     -- Block Polling if something's queued
     if ac.poll.gcd ~= nil then ac.flags.canpoll = false end
 end
+function ac.UpdateBreath()
+    if Player.Incombat and ac.IsInDungeon() and ac.settings.autolevel then
+        if IsControlOpen("SystemMenu") then UseControlAction("SystemMenu","Close") end
+    end
+end
 function ac.UpdateCombo()
     local lc = Player.castinginfo.lastcastid
     for _, e in pairs(ac.combo) do
         if e == lc then ac.flags.lastaction = e end
     end
+    for _,e in pairs(ac.heals) do
+        if Player.castinginfo.lastcastid == e and TimeSince(ac.timer.heal.last) > ac.timer.heal.timeout + 1000 then ac.timer.heal.last = Now() end
+    end
+    if TimeSince(ac.timer.heal.last) > ac.timer.heal.timeout then ac.flags.canheal = true else ac.flags.canheal = false end
 end
 function ac.UpdateFlags()
 
@@ -1194,17 +1397,28 @@ function ac.UpdateGauge()
         ac.gauge.SMNtopaz = Player.gauge[6]
         ac.gauge.SMNemerald = Player.gauge[7]
     end
+    if ac.IsWarrior() then
+        ac.gauge.WARbeast = Player.gauge[1]
+    end
+    if ac.IsDarkKnight() then
+        ac.gauge.DRKdarkside = Player.gauge[2]
+    end
+    if ac.IsMachinist() then
+        ac.gauge.MCHheat = Player.gauge[1]
+        ac.gauge.MCHbattery = Player.gauge[2]
+        ac.gauge.MCHoverheated = Player.gauge[3]
+    end
 end
 function ac.UpdateHalfbeat()
     ac.timer.halfbeat.last = Now()
-
-    if IsControlOpen("SelectYesno") then
-		local str = GetControlStrings("SelectYesno", 2)
-        if string.find(str, "Unlock") then UseControlAction("SelectYesno","Yes") end
-    end
     -- dungeon crawler
     if (ac.settings.autolevel and ac.flags.hasinitdungeon) then
-        if not Player.alive then ac.InitDungeon() ac.flags.missionindex = 1 end
+        -- door pressers
+        if IsControlOpen("SelectYesno") then
+            local str = GetControlStrings("SelectYesno", 2)
+            if string.find(str, "Enter") or string.find(str, "Read") or string.find(str, "Unlock") or string.find(str, "Press") or string.find(str, "Use") or string.find(str, "Open") or string.find(str, "Pull") or string.find(str, "Add") or string.find(str, "Activate") then UseControlAction("SelectYesno","Yes") end
+        end
+        if not Player.alive then d("[EASECore] - Game AI has beaten our AI... please report to @Alchael - or equip better gear to ensure success") ac.InitDungeon() ac.flags.missionindex = 1 end
         local mission = nil
         mission = ac.todo[ac.flags.missionindex]
         if mission == nil and Duty:GetActiveDutyInfo().timer < 5390 then
@@ -1219,50 +1433,70 @@ function ac.UpdateHalfbeat()
             end
         elseif mission.done then ac.flags.missionindex = ac.flags.missionindex + 1
         end
-
         local mobs = EntityList("alive,targetable,attackable,incombat,maxdistance2d=15")
         local ts = nil
         table.sort(mobs, function(l,r) return (l.hp.current) < (r.hp.current) end)
         ts = mobs[1] --d(mobs)
-        if ts then Player:Stop() Player:SetTarget(ts.id) end
-
-        if ac.flags.lastcombat > 2000 and TimeSince(ac.flags.lastinteract) > 5000 then
+        --if ts then Player:Stop() Player:SetTarget(ts.id) end
+        if ac.flags.lastcombat > 2000 and TimeSince(ac.flags.lastinteract) > 3000 then
             if mission and not Player.Incombat then
-                local pos = {x=mission[1][2],y=mission[1][3],z=mission[1][4]}
-                if mission[1][1] == true and ac.GetDistance(Player.pos,pos) < 4 then
-                    local el, t = EntityList("targetable,interactable,maxdistance2d=3"), nil
-                    for i, e in pairs(el) do
-                        if mission[1][5] == e.name then t = e end
-                    end
-                    Player:Stop()
-                    if t then Player:Interact(t.id)
-                        ac.flags.sleep = 3000
-                        ac.flags.lastinteract = Now() -- hack to make us wait
-                    else
-                        ac.flags.missionindex = ac.flags.missionindex - 1
-                    
-                    end
-                    
-                    d("[EASECore] - Interacting...")
-
-                    ac.UpdateMission()
+                local pos, t = {x=mission[1][2],y=mission[1][3],z=mission[1][4]}, nil
+                if not mission[1][5] == "Player" then
+                   local t = ac.GetEntity(mission[1][5],25)
+                    d("[EASECore] - Go to target: "..tostring(t.name))
+                    pos = t.pos
                 end
-                if ac.GetDistance(Player.pos,pos) < 2 then --distance for gates
-                    d("[EASECore] - REACHED Checkpoint")
+                if mission[1][1] == true and ac.GetDistance(Player.pos,pos) < 4 then
+                    local t = ac.GetEntity(mission[1][5],15)
+                    if t == nil then
+                        ac.flags.missionindex = ac.flags.missionindex + 1 d("BAD PATHING - SKIPPING!")
+                    end
+                    d("[EASECore] - Found Interact Target: ! "..tostring(t.name))
+                    pos = t.pos
+                    if ac.GetDistance(Player.pos,t.pos) < 4 then
+                        Player:Stop()
+                        if t then Player:Interact(t.id)
+                            ac.flags.sleep = 2000
+                            ac.flags.lastinteract = Now() -- hack to make us wait
+                            d("[EASECore] - Interacting with..."..tostring(t.name))
+                            ac.UpdateMission()
+                        else
+                            ac.flags.missionindex = ac.flags.missionindex - 1
+                        end
+                    end
+                end
+                if mission[1][1] == false and ac.GetDistance(Player.pos,pos) < 2 then --distance for gates
+                    d("[EASECore] - REACHED Checkpoint "..tostring(ac.flags.missionindex))
+                    Player:Move(FFXIV.MOVEMENT.FORWARD)
                     ac.UpdateMission()
                 elseif ac.flags.sleep == 0 and not MIsCasting() then
-                    MoveDirectly3D(pos) 
-                    if ac.flags.missionindex ~= ac.flags.prevmissionindex then d("[EASECORE] - Mission Step: "..tostring(ac.flags.missionindex)) end
+                    if mission[1][5] ~= "Player" then
+                        local t = ac.GetEntity(mission[1][5],25)
+                        if t == nil then ac.flags.missionindex = ac.flags.missionindex + 1 else
+                            d("[EASECore] - INTERACTABLE FOUND! - "..tostring(t.name).." @ x:"..string.format("%.2f",t.pos.x).." y:"..string.format("%.2f",t.pos.y).." z:"..string.format("%.2f",t.pos.z))
+                            if ac.GetDistance(Player.pos,t.pos) < 4 then
+                                Player:Stop()
+                                if t then Player:Interact(t.id)
+                                    if t.name ~= "Treasure Coffer" then -- ???
+                                        ac.flags.sleep = 2000
+                                        ac.flags.lastinteract = Now() -- hack to make us wait
+                                    end
+                                    d("[EASECore] - Interacting with..."..tostring(t.name))
+                                    ac.UpdateMission()
+                                end
+                            else
+                                Player:MoveTo(t.pos.x,t.pos.y,t.pos.z)
+                            end
+                        end
+                    else
+                        Player:MoveTo(pos.x,pos.y,pos.z)
+                    end
+                    local str = "" if mission[1][5] ~= "Player" then str = mission[1][5] end
+                    if ac.flags.missionindex ~= ac.flags.prevmissionindex then d("[EASECORE] - Mission Step: "..tostring(ac.flags.missionindex).." "..tostring(str)) end
                 end
-            elseif not ac.flags.prevcombat then
-                Player:Stop()
-                d("Player is Fighting for Dear Life!!!")
-                --d("[EASECORE] - Mission Step: "..tostring(ac.flags.missionindex))
             end
-            
         end
-        -- Unstucker for interactables
-        --if not Player.Incombat and ac.flags.stuck then ac.flags.stuck = false ac.settings.missionindex = ac.settings.missionindex - 1 ac.flags.missionindex = ac.settings.missionindex Player:Stop() ac.SaveSettings() end --causing fucking bugs
+        if ac.flags.stucktime > ac.timer.stuck.timeout and not Player.Incombat then ac.RestartDungeon() end
     end
 end
 
@@ -1273,29 +1507,32 @@ function ac.UpdateHeartbeat()
     if IsControlOpen("RecommendList") then UseControlAction("RecommendList","Close") end
     if IsControlOpen("PlayGuide") then UseControlAction("PlayGuide","Destroy") end
     local sprint = ActionList:Get(5,4)
-    if (ac.flags.movetime >= 5 and ac.settings.autocombat and not sprint.isoncd and Player.Incombat == false and not IsMounted() and Player:IsMoving() and not ac.IsInBossDungeon()) then -- need proper logic here when to cast, preferrably trying to avoidAOE
+    if (ac.flags.movetime >= 5 and ac.settings.autocombat and not sprint.isoncd and Player.Incombat == false and not IsMounted() and not ac.IsInBossDungeon()) then -- need proper logic here when to cast, preferrably trying to avoidAOE
         sprint:Cast()
     end
+    --stuck check
+    if ac.flags.stuck then ac.flags.stucktime = ac.flags.stucktime + 1 else ac.flags.stucktime = 0 end
     ac.flags.stuck = ac.IsStuck()
-    
+    --flags
     if Player.Incombat then ac.flags.lastcombat = Now() end
     if ac.flags.prevmapid ~= Player.localmapid then ac.flags.prevmapid = Player.localmapid end
+    if Player.job ~= ac.flags.prevjob then ac.flags.prevjob = Player.job ac.InitJob() end
 
     if Player.Incombat ~= ac.flags.prevcombat then ac.flags.prevcombat = not ac.flags.prevcombat end
     if ac.flags.missionindex ~= ac.flags.prevmissionindex then ac.flags.prevmissionindex = ac.flags.missionindex end
     -- dungeon reset
     if not ac.IsInDungeon() then ac.flags.hasinitdungeon = false ac.settings.missionindex = 1 ac.flags.missionindex = 1 end
     -- bandaid
+    --if ac.flags.stuck and ac.IsInDungeon() and ac.settings.autolevel then ActionList:Get(5,2):Cast() end -- jump like an idiot
     if ac.settings.autocombat and ac.IsSummoner() then if not table.valid(Player.pet) then ac.CastChannel(Player,ac.actions.SummonCarbuncle) end end
     -- can't have your cake and eat it too
     if ac.settings.exclusive and ac.settings.autocombat and FFXIV_Common_BotRunning then ac.settings.autocombat = false ac.SaveSettings() end
     -- CRAWL SOME DUNGEON
-    if ac.settings.autolevel and not ac.flags.hasinitdungeon and not ac.IsInDungeon() then
+    if ac.settings.autocombat and ac.settings.autolevel and not ac.flags.hasinitdungeon and not ac.IsInDungeon() then
         local dutyindex = nil
-        for i = Player.level, 15, -1 do
+        for i = Player.level, 1, -1 do
             if ac.dungeon[i] then
                 dutyindex = ac.dungeon[i]
-                --d("i: "..tostring(i).." FOUND!!!"..tostring(dutyindex))
                 break
             end
         end
@@ -1304,7 +1541,18 @@ function ac.UpdateHeartbeat()
         elseif IsControlOpen("DawnStory") then
             UseControlAction("DawnStory","SelectDuty",dutyindex)
             UseControlAction("DawnStory","Register",dutyindex)
-        else
+            local maxlevel, maxitem = 0, 0
+            table.sort(ac.dgitemlevel, function (l,r) return (l) < (r)end)
+            for i, e in pairs(ac.dgitemlevel) do
+                --d("i:"..tostring(i).." e:"..tostring(e))
+                if i > maxlevel and Player.level >= i then maxlevel = i maxitem = e end
+            end
+            if IsControlOpen("DawnStory") and GetControlRawData("DawnStory",403).value < maxitem then
+                d("[EASECore] - Cannot Join Current Highest Dungeon Level - Upgrade Your Gear!") ac.settings.autolevel = false ac.SaveSettings()
+            else
+                d("[EASECore] - Highest Doable Duty Support Dungeon Level: "..tostring(maxlevel).." - iLevel Requirement: "..tostring(maxitem).." - Commencing EASECore AutoLeveling...")
+            end
+        elseif dutyindex then
             ActionList:Get(10,91):Cast()
             ac.settings.missionindex = 1
         end
@@ -1335,13 +1583,35 @@ function ac.UpdatePulse()
     ac.UpdateSongs()
     ac.UpdateTarget()
     ac.UpdateTeamHealth()
-    --Roles
-    if ac.settings.autocombat and ac.IsRange() and not ac.IsInBossDungeon() and not IsMounted() and not IsFlying() and not ac.HasBuff("Peloton") and not Player.Incombat and ac.flags.movetime >= ac.timer.peloton.timeout then ac.CastWeave(Player,ac.actions.Peloton) end
-    if Player.Incombat and (ac.IsMelee() or ac.IsRange()) then if Player.hp.percent <= ac.settings.hpthreshold3 then ac.CastWeave(Player,ac.actions.SecondWind) end end
-    if Player.Incombat and ac.IsMelee() then
-        if Player.hp.percent <= ac.settings.hpthreshold2 then ac.CastWeave(Player,ac.actions.Bloodbath) end
-        local lt = MGetTarget()
-        if lt and table.valid(lt) then if lt.castinginfo.channeltime > 2.5 and ac.flags.toughness > ac.settings.bosshpmultiplier then ac.CastWeave(lt,ac.actions.Feint) end end
+    --Role Actions
+    if ac.settings.autocombat then
+        if ac.flags.canweave then
+            local lt = ac.IsValidAttackTarget() or ac.targets.single
+            if Player.Incombat then
+                if ac.IsTank() then
+                    if ac.IsCastingSomethingDangerousInterruptible(lt) then ac.CastWeave(lt,ac.actions.Interject) end
+                    if lt and lt.hp.max > Player.hp.max * ac.settings.bosshpmultiplier or ac.IsAOEGood(ac.range.short) then
+                        if Player.hp.percent < ac.settings.hpthreshold1 then ac.CastWeave(Player,ac.actions.Reprisal) end
+                        if Player.hp.percent < ac.settings.hpthreshold2 then ac.CastWeave(Player,ac.actions.Rampart) end
+                    end
+                end
+                if ac.IsHealer() then
+                    if Player.mp.current < ac.settings.mphalf then ac.CastWeave(Player,ac.actions.LucidDreaming) end
+                end
+                if ac.IsMelee() or ac.IsRange() then if Player.hp.percent <= ac.settings.hpthreshold3 then ac.CastWeave(Player,ac.actions.SecondWind) end end
+                if ac.IsMelee() then
+                    if Player.hp.percent <= ac.settings.hpthreshold2 then ac.CastWeave(Player,ac.actions.Bloodbath) end
+                    if ac.IsCastingSomethingDangerous(lt) then ac.CastWeave(lt,ac.actions.Feint) end
+                end
+                if ac.IsCaster() then
+                    if Player.mp.current < ac.settings.mphalf then ac.CastWeave(Player,ac.actions.LucidDreaming) end
+                    ac.GetToughness(ts)
+                    if ac.IsCastingSomethingDangerous(lt) then ac.CastWeave(lt,ac.actions.Addle) end
+                end
+            end
+        elseif not Player.Incombat then
+            if ac.IsRange() and not ac.IsInBossDungeon() and not IsMounted() and not IsFlying() and not ac.HasBuff("Peloton") and ac.flags.movetime >= 1 then ActionList:Get(1,ac.actions.Peloton):Cast() end
+        end
     end
 end
 function ac.UpdateSongs()
@@ -1363,13 +1633,14 @@ function ac.UpdateTarget()      -- Needs rework and abstraction.. but working fo
         ac.targets.single = ac.GetPrioritySingleTarget()
         ac.targets.boss = ac.GetBoss(ac.range.basic)
     end
-    if ac.IsPaladin() then
+    if ac.IsTank() then
+        ac.targets.cone = ac.GetMaxEnemiesInsideConePoint(ac.range.cone,false)
         ac.targets.tankpoke = ac.GetPriorityTankPoke()
         ac.targets.single = ac.GetPrioritySingleTarget()
         ac.targets.short = ac.GetEnemiesInsideRadius(ac.range.short)
         ac.targets.boss = ac.GetBoss(ac.range.basic)
     end
-    if ac.IsSage() then
+    if ac.IsHealer() then
         ac.targets.heal = ac.GetPrioritySingleHeal()
         ac.targets.revive = ac.GetPrioritySingleRevive()
         ac.targets.single = ac.GetPrioritySingleTarget()
@@ -1381,25 +1652,6 @@ function ac.UpdateTarget()      -- Needs rework and abstraction.. but working fo
         ac.targets.revive = ac.GetPrioritySingleRevive()
         ac.targets.single = ac.GetPrioritySingleTarget()
         ac.targets.boss = ac.GetBoss(ac.range.basic)
-    end
-    if ac.IsWhiteMage() then --section still needs converting to new design
-        local el = EntityList("alive, aggro, attackable")
-        ac.entities.enemies = {}
-        for _, entity in pairs(el) do
-            if (entity.distance2d < ac.range.basic and entity.los2 and entity.aggropercentage > 0) then
-                table.insert(ac.entities.enemies, entity)
-            end
-        end
-        table.sort(ac.entities.enemies, function (l,r) return (l.hp.current) < (r.hp.current) end)
-        table.sort(ac.entities.enemies, function (l,r) return (l.aggropercentage) > (r.aggropercentage) end)
-        table.sort(ac.entities.enemies, function(l,r) return not ac.HasDOT(l,1) and ac.HasDOT(r,1) end)
-        if (#ac.entities.enemies > 0) then
-            Player:SetTarget(ac.entities.enemies[1].id)
-            d("ATTACKING!: "..tostring(#ac.entities.enemies))
-            for _, e in pairs(ac.entities.enemies) do
-                d(tostring(e.name))
-            end
-        end
     end
 end
 function ac.W2S(pos) return RenderManager:WorldToScreen(pos,true) end
