@@ -1,0 +1,1 @@
+start "" https://discord.gg/uQaS5b3f4c
