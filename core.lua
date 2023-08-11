@@ -194,6 +194,7 @@ ac.actions = {
     Wildfire = 2878,
 }
 ac.avoid = {{ [902] = "front", [903] = "rear",[1022]="rear"}, { [902] = "rear", [903] = "rear", [1022]="rear"}}
+ac.avoidLOS = { [3481] = 3 }
 ac.boss = {1677,1680}
 ac.combo = {}
 table.insert(ac.combo,ac.actions.FastBlade)
@@ -371,7 +372,7 @@ else
         hpthreshold2 = 50,
         hpthreshold3 = 33,
         hpcritical = 15,
-        missionindex = 0,
+        missionindex = 1,
         mphalf = 5000,
         mpcritical = 1000,
         pullmode = false,
@@ -598,9 +599,9 @@ function ac.CombatBlackMage()
         local sc = ActionList:Get(1,ac.actions.Swiftcast)
 
         
-        if not Player.Incombat and ac.gauge.BLMumbraltimer < 2000 and ac.gauge.BLMumbraltype ~= 0 then ac.CastInstant(Player,ac.actions.Transpose) end
+        --if not Player.Incombat and ac.gauge.BLMumbraltimer < 2000 and ac.gauge.BLMumbraltype ~= 0 then ac.CastInstant(Player,ac.actions.Transpose) end
         if ac.flags.canweave and Player.hp.percent < ac.settings.hpthreshold3 then ac.CastWeave(Player,ac.actions.Manaward) end
-        if (Player.mp.current < 1600 or ac.gauge.BLMumbraltimer < 2000) and ac.gauge.BLMumbraltype ~= 0 and ac.flags.canweave then
+        if not ac.IsSwiftcasted() and not ac.IsBLMYoked() and not ac.IsBLMYoking() and (Player.mp.current < 1600 or ac.gauge.BLMumbraltimer < 2000) and ac.gauge.BLMumbraltype ~= 0 and ac.flags.canweave then
             ac.CastWeave(Player,ac.actions.Transpose)
         end
         if tr then
@@ -617,15 +618,15 @@ function ac.CombatBlackMage()
             if not ac.IsSwiftcasted() and ac.HasBuff("Thundercloud") or not ac.IsSwiftcasted() and (Player.castinginfo.lastcastid ~= ac.actions.Thunder and not ac.HasDOT(ts,1) and not ac.HasDOT(ts,2)) then ac.CastChannel(ts,ac.actions.Thunder) ac.timer.channeledDOT.last = Now() end
             if ac.gauge.BLMumbraltype == -3 or (ac.gauge.BLMumbraltype == 1 and Player.mp.current >= 4000) then ac.CastChannel(ts,ac.actions.Fire3) end
             if ac.gauge.BLMumbraltype == 3 or (ac.gauge.BLMumbraltype <= 1 and Player.mp.current >= 800)then ac.CastChannel(ts,ac.actions.Blizzard3) end
-            if Player.mp.current >= 1600 and ac.gauge.BLMumbraltype >= 0 then ac.CastChannel(ts,ac.actions.Fire) else
+            if not ac.IsSwiftcasted() and not ac.IsBLMYoked() and not ac.IsBLMYoking() and Player.mp.current >= 1600 and ac.gauge.BLMumbraltype >= 0 then ac.CastChannel(ts,ac.actions.Fire) else
                 if ac.flags.canweave and ac.gauge.BLMumbraltype == -1 then ac.CastWeave(Player,ac.actions.Transpose) end
             end
-            if not ac.IsSwiftcasted() and not ac.IsBLMYoked() and not ac.IsBLMYoking() and Player.mp.current < 3000 and tp.cd == 0 then
+            if not ac.IsSwiftcasted() and not ac.IsBLMYoked() and not ac.IsBLMYoking() and Player.mp.current < 3000 and ac.gauge.BLMumbraltype ~= 0 and tp.cd == 0 then
                 tp:Cast()
             end
             if ac.gauge.BLMumbraltype == -1 and Player.mp.current < 3000 and tp.isoncd then
                 ac.CastChannel(ts,ac.actions.Blizzard)
-            elseif not ac.IsSwiftcasted() and not ac.IsBLMYoked() and not ac.IsBLMYoking() and Player.mp.current > 3000 and tp.cd == 0 then
+            elseif not ac.IsSwiftcasted() and not ac.IsBLMYoked() and not ac.IsBLMYoking() and Player.mp.current > 3000 and ac.gauge.BLMumbraltype ~= 0 and tp.cd == 0 then
                 tp:Cast()
             end
         end
@@ -1095,11 +1096,11 @@ function ac.Draw()
                     GUI:BeginTooltip()
                     GUI:TextColored(ac.style.cyan.r,ac.style.cyan.g,ac.style.cyan.b,1,"verion "..ac.constants.version)
                     GUI:TextColored(1,1,1,1,"\nCurrently Supported:")
-                    GUI:TextColored(ac.style.green.r,ac.style.green.g,ac.style.green.b,1,"BARD - 100%%")
-                    GUI:TextColored(ac.style.yellow.r,ac.style.yellow.g,ac.style.yellow.b,1,"ASTROLOGIAN - 55%%\nBLACK MAGE - 55%%\nDARK KNIGHT - 55%%\nDRAGOON - 55%%\nMACHINIST - 55%%\nPALADIN - 55%%\nSCHOLAR - 55%%\nSUMMONER - 30%%\nWARRIOR - 50%%\nWHITE MAGE - 55%%\n")
+                    GUI:TextColored(ac.style.green.r,ac.style.green.g,ac.style.green.b,1,"BARD - lvl 90")
+                    GUI:TextColored(ac.style.yellow.r,ac.style.yellow.g,ac.style.yellow.b,1,"ASTROLOGIAN - lvl 45\nBLACK MAGE - lvl 45\nDARK KNIGHT - lvl 45\nDRAGOON - lvl 52\nMACHINIST - lvl 50\nPALADIN - lvl 50\nSCHOLAR - lvl 50\nSUMMONER - lvl 45\nWARRIOR - lvl 45\nWHITE MAGE - lvl 50\n")
                     GUI:TextColored(ac.style.orange.r,ac.style.orange.g,ac.style.orange.b,1,"SAGE - 20%% - NOT READY YET")
                     GUI:TextColored(ac.style.red.r,ac.style.red.g,ac.style.red.b,1,"GUNBREAKER - 0%% - TODO\nMONK - 0%% - TODO\nNINJA - 0%% - TODO\nSAMURAI - 0%% - TODO\nREAPER - 0%% - TODO\nDANCER - 0%%\nRED MAGE - 0%% - TODO")
-                    GUI:Text("\nAdd me on Discord for support\nand requests")
+                    GUI:Text("\nAdd me on Discord for support\nand requests. This is still a\nwork-in-progress. Please don't\nexpect perfection. :)")
                     GUI:TextColored(ac.style.cyan.r,ac.style.cyan.g,ac.style.cyan.b,1,"-Alchael")
                     GUI:Text("\n-P.S. Thank you so much\nfor trying me out. Take care :]")
                     GUI:TextColored(ac.style.green.r,ac.style.green.g,ac.style.green.b,1,"[LEFT CLICK to Disable EASECore]")
@@ -1132,7 +1133,7 @@ function ac.Draw()
                 end
                 GUI:BeginTooltip()
                 GUI:TextColored(ac.style.cyan.r,ac.style.cyan.g,ac.style.cyan.b,1,"Auto Leveller - Dungeon Crawler\n")
-                GUI:TextColored(1,1,1,1,"\nAlways bring tons of\nGrade 8 Dark Matter\nin your bag for auto\nrepairs and ensure\nthe addon can autolevel\nfor a long time.\n\n")
+                GUI:TextColored(1,1,1,1,"\nAlways bring tons of\nAppropriate Grade Dark Matter\nin your bag for auto\nrepairs and ensure\nthe addon can autolevel\nfor a long time.\n\n")
                 GUI:TextColored(ac.style.yellow.r,ac.style.yellow.g,ac.style.yellow.b,1,"Currently SUPPORTED DUNGEONS:\n")
                 GUI:TextColored(ac.style.green.r,ac.style.green.g,ac.style.green.b,1,dungeons)
                 GUI:EndTooltip()
@@ -1217,6 +1218,14 @@ function ac.Draw()
                 GUI:Text("canpoll:"..tostring(ac.flags.canpoll).." lastpoll:"..tostring(TimeSince(ac.timer.poll.last)))
                 GUI:Text("polled:"..tostring(ac.poll.gcd).." lastaction:"..tostring(Player.castinginfo.lastcastid))
                 GUI:Text("avoiding:"..tostring(ac.flags.avoiding).." lastheal:"..tostring(TimeSince(ac.timer.heal.last)).." sleep:"..tostring(ac.flags.sleep))
+                local el = EntityList("alive,maxdistance2d=50")
+                local t = nil
+                for i, e in pairs(el) do
+                    if not e.targetable and e.aggressive then t = e end
+                end
+                if t and table.valid(t) then
+                    GUI:Text("name:"..tostring(t.name).." cinfo:"..tostring(t.castinginfo))
+                end
                 --local x, y = RenderManager:WorldToScreen({pos.x,pos.y,pos.z}, true)
                 --GUI:Text("x: "..tostring(x).." y: "..tostring(y))
                 --GUI:AddCircleFilled( x/2, 1-y, 100,GUI:ColorConvertFloat4ToU32(0.9,0.1,0.12,0.5),32)
@@ -1279,10 +1288,11 @@ function ac.GetDeadFriends(radius)
 end
 function ac.GetFriends(radius)
     local el = EntityList.myparty or EntityList.crossworldparty
+    local friends = {}
     if #el == 0 then
         el = EntityList("alive,targetable,chartype=9,maxdistance=30")
+        table.insert(friends,Player)
     end
-    local friends = {} table.insert(friends,Player)
     ac.flags.damagedfriends = 0
     for _, e in pairs(el) do
         if (ac.GetDistance(Player.pos,e.pos) < radius) then
@@ -1534,7 +1544,7 @@ function ac.InGame() return MGetGameState() == FFXIV.GAMESTATE.INGAME end
 function ac.IsActionReady(action) return (action.level <= Player.level and not action.isoncd) end
 function ac.IsAOECandidate(target) if (target and target.ents >= ac.settings.aoethreshold) then return target else return false end end
 function ac.IsAOEGood(radius) return #ac.GetEnemiesInsideRadius(radius) >= ac.settings.aoethreshold end
-function ac.IsAOEHealGood() if #ac.entities.friends ~= 0 then return (ac.flags.damagedfriends >= #ac.entities.friends/2) end end
+function ac.IsAOEHealGood() if table.valid(ac.entities.friends) and #ac.entities.friends ~= 0 then return (ac.flags.damagedfriends >= #ac.entities.friends/2) end end
 function ac.IsCombo(action) return ac.flags.lastaction == action end
 function ac.IsAstrologian(target) local t = target or Player return t.job == FFXIV.JOBS.ASTROLOGIAN end
 function ac.IsBard(target) local t = target or Player return t.job == FFXIV.JOBS.ARCHER or t.job == FFXIV.JOBS.BARD end
@@ -1853,6 +1863,7 @@ function ac.UpdateHeartbeat()
     end
     --autorepair
     if ac.IsInDungeon() and ac.settings.autocombat and not ac.settings.repaired and not Player.Incombat and Player.targetable then
+        if Player:IsMoving() then Player:Stop() end
         if IsControlOpen("SelectYesno") and ac.flags.sleep == 0 then
             UseControlAction("SelectYesno","Yes")
             ac.settings.repair.last = Now()
@@ -1867,15 +1878,14 @@ function ac.UpdateHeartbeat()
             if not ac.settings.repaired then d("[EASECore] - WILL NOW ATTEMPT REPAIR") end
         elseif not ac.flags.repairwindow then
             ActionList:Get(5,6):Cast()
-            Player:Stop()
-            ac.settings.autolevel = false
+            --ac.settings.autolevel = false
             ac.flags.repairwindow = true
         end
     end
     if ac.settings.repaired and TimeSince(ac.settings.repair.last) > ac.settings.repair.frequency then
         ac.settings.repaired = false ac.SaveSettings()
     end
-    if ac.settings.repaired and IsControlOpen("Repair") then UseControlAction("Repair","Close") end
+    if ac.IsInDungeon() and ac.settings.autolevel and ac.settings.repaired and IsControlOpen("Repair") then UseControlAction("Repair","Close") end
     --stuck check
     if ac.flags.stuck then ac.flags.stucktime = ac.flags.stucktime + 1 else ac.flags.stucktime = 0 end
     ac.flags.stuck = ac.IsStuck()
@@ -1895,7 +1905,7 @@ function ac.UpdateHeartbeat()
     -- can't have your cake and eat it too
     if ac.settings.exclusive and ac.settings.autocombat and FFXIV_Common_BotRunning then ac.settings.autocombat = false ac.SaveSettings() end
     -- CRAWL SOME DUNGEON
-    if ac.IsSupported() and ac.settings.autocombat and ac.settings.autolevel and not ac.flags.hasinitdungeon and not ac.IsInDungeon() then
+    if (ac.IsSupported() or not ac.settings.exclusive) and ac.settings.autocombat and ac.settings.autolevel and not ac.flags.hasinitdungeon and not ac.IsInDungeon() then
         if Player.level < 15 then d("[EASECore] - Level Up to at least 15 Before you can use AUTOLEVELER!") ac.settings.autolevel = false ac.SaveSettings() end
         local dutyindex = nil
         for i = Player.level, 1, -1 do
